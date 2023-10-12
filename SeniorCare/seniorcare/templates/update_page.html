@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/update_page.css' %}">
+
+<body>
+  <div class="search">
+       <form action = "" class="search-bar">
+           <button type="submit"><img src="{% static 'image/Search.png' %}"></button>
+           <input type="text" placeholder="Search" name="q">
+       </form>
+   </div>
+  
+   <div class="table-update">
+       <center><table>
+
+           <caption>BRGY. 123 / Zone 44</caption>
+           <tr>
+               <th>ID</th>
+               <th>First Name</th>
+               <th>Last Name</th>
+               <th>Middle Name</th>
+               <th></th>
+           </tr>
+
+           <td>1</td>
+           <td>Marc Jehiel</td>
+           <td>Mangalindan</td>
+           <td>T.</td>
+           <td><a href="{% url 'update_viewinfo_page' %}">View Info</a></td>
+       </table></center>   
+   </div>
+</body>
+
+{% endblock content%}

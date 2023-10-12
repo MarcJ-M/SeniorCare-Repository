@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/update_viewinfo_page.css' %}">
+
+<body>
+  <div class="wrapper">
+      <div class="inner">
+          <form action="">
+              <div class="form-wrapper">
+                  <input type="text" class="form-control" name="Firstname" placeholder="First Name" required>
+              </div>
+
+              <div class="form-wrapper">
+                  <input type="text" class="form-control" name="Lastname" placeholder="Last Name" required>
+              </div>
+
+              <div class="form-wrapper">
+                  <input type="text" class="form-control" name="Middlename" placeholder="Middle Name" required>
+              </div>
+              
+              <div class="form-group">
+                  <input type="text" class="form-control" name="Suffix" placeholder="Suffix">
+                  <select name="sex" id="sex" class="form-select">
+                      <option value="" disabled selected>Sex</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                  </select>
+              </div>
+
+              <div class="form-group1">
+                  <input type="text" class="form-control" name="Birthdate" placeholder="Birth date: dd-mm-yyyy" required>
+                  <input type="number" class="form-control" name="Age" placeholder="Age" required>
+              </div>
+
+              <div class="form-wrapper">
+                  <input type="text" class="form-control" name="Adress" placeholder="Address" required>
+              </div>
+              <button type="submit" class="btn-Next">Save</button>
+              <br><br>
+              <button type="delete" class="btn-delete">Delete</button>
+          </form>
+
+          <div class="photo-holder">
+            <img src="{% static 'image/profile.png' %}">
+          </div>
+      </div>
+  </div>
+</body>
+{% endblock content%}
