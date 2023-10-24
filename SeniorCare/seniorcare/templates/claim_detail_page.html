@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/claiming.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+        {% csrf_token %}
+    <div class="claim-detail-container">
+
+        <div class="display-form">
+            <label>Last Name</label>
+            <input value="{{ seniors.last_name}}" disabled>
+        </div>
+
+        <div class="display-form">
+            <label>First Name</label>
+            <input value="{{ seniors.first_name}}"  disabled>
+        </div>
+
+        <div class="detail-column">
+            <div class="display-form">
+                <label>Middle Name</label>
+                <input value="{{ seniors.middle_name}}"  disabled>
+            </div>
+    
+            <div class="display-form">
+                <label>Suffix</label>
+                <input value="{{ seniors.suffix}}" disabled>
+            </div>
+        </div>
+
+
+        <div class="detail-column1">
+            <div class="display-form">
+                <label>Age</label>
+                <input value="{{ seniors.age}}" disabled>
+            </div>
+    
+            <div class="display-form">
+                <label>Gender</label>
+                <input value="{{ seniors.sex}}" disabled>
+            </div>
+          
+            <div class="display-form">
+                <label>Birthdate</label>
+                <input value="{{ seniors.birth_date}}" disabled>
+            </div>
+        </div>
+
+        <div class="detail-column2">
+            <div class="display-form">
+                <label>ID</label>
+                <input  value="{{ seniors.OSCA_ID}}" disabled>
+            </div>
+
+            <a href="#"  class="Next-btn">Next<i class="fa-solid fa-chevron-right"></i></a>
+
+
+        </div>
+    </div>
+{% endblock content%}

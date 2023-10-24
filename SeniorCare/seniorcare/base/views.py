@@ -54,3 +54,11 @@ def update_page(request):
 
 def update_viewinfo_page(request):
     return render(request, 'update_viewinfo_page.html')
+
+def claim_page(request):
+    seniors = senior_list.objects.all()
+    return render(request, 'claim_page.html', {'seniors': seniors})
+
+def claim_detail_page(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'claim_detail_page.html', {'seniors': seniors})
