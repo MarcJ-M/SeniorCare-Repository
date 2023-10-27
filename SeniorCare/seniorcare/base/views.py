@@ -4,6 +4,11 @@ from django.contrib.auth import authenticate, login,logout
 from django. contrib import messages
 from .models import senior_list
 from .forms import register_form
+
+from django.shortcuts import redirect, get_object_or_404
+from django.utils import timezone
+from django.http import HttpResponse
+import csv
 # Create your views here.
 
 def index(request):
@@ -62,3 +67,89 @@ def claim_page(request):
 def claim_detail_page(request, id):
     seniors = senior_list.objects.get(id=id)
     return render(request, 'claim_detail_page.html', {'seniors': seniors})
+
+def claimed_success(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'claimed_success.html', {'seniors': seniors})
+
+
+def claimed_succesfully(request, id):
+    seniors = get_object_or_404(senior_list, pk=id)
+    seniors.is_claimed = True
+    seniors.claimed_date = timezone.now()
+    seniors.save()
+
+    context = {
+        'last_name': seniors.last_name,
+        'first_name': seniors.first_name,
+        'middle_name': seniors.middle_name,
+        'OSCA_ID': seniors.OSCA_ID,
+        'claimed_date': seniors.claimed_date,
+    }
+    return render(request, 'claimed_success.html', context)
+
+
+def claim_verify_page(request):
+    claimed_seniors = senior_list.objects.filter(is_claimed=True).order_by('last_name')
+    unclaimed_seniors = senior_list.objects.filter(is_claimed=False).order_by('last_name')
+    seniors = list(claimed_seniors) + list(unclaimed_seniors)
+
+    return render(request, 'claim_verify_page.html', {'seniors': seniors})
+
+def claim_summary_page(request):
+    claimed_seniors = senior_list.objects.filter(is_claimed=True)
+    unclaimed_seniors = senior_list.objects.filter(is_claimed=False)
+
+    claimed_count = claimed_seniors.count()
+    unclaimed_count = unclaimed_seniors.count()
+    overall_count = claimed_count + unclaimed_count
+
+    return render(request, 'claim_summary_page.html', {
+        'claimed_count': claimed_count,
+        'unclaimed_count': unclaimed_count,
+        'overall_count': overall_count,
+    })
+
+
+def download_summary(request):
+    current_datetime = timezone.now()
+    formatted_datetime = current_datetime.strftime('%Y-%m-%d')
+    filename = f"summary_{formatted_datetime}.csv"
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    writer = csv.writer(response)
+
+    writer.writerow(['Claimed Seniors'])
+    writer.writerow(['Last Name', 'First Name', 'Age', 'OSCA ID', 'Claimed Date', 'Status'])
+    claimed_seniors = senior_list.objects.filter(is_claimed=True).order_by('last_name')
+    for senior in claimed_seniors:
+        claimed_status = 'Claimed'
+        claimed_date = senior.claimed_date.strftime('%B %d, %Y')
+        writer.writerow([
+            senior.last_name,
+            senior.first_name,
+            senior.age,
+            senior.OSCA_ID,
+            claimed_date,
+            claimed_status
+        ])
+
+    writer.writerow([])
+    writer.writerow(['Unclaimed Seniors'])
+    writer.writerow(['Last Name', 'First Name', 'Age', 'OSCA ID', 'Claimed Date', 'Status'])
+    unclaimed_seniors = senior_list.objects.filter(is_claimed=False).order_by('last_name')
+    for senior in unclaimed_seniors:
+        claimed_status = 'Unclaimed'
+        claimed_date = senior.claimed_date.strftime('%B %d, %Y')
+        writer.writerow([
+            senior.last_name,
+            senior.first_name,
+            senior.age,
+            senior.OSCA_ID,
+            claimed_date,
+            claimed_status
+        ])
+
+    senior_list.objects.update(is_claimed=False)
+    return response

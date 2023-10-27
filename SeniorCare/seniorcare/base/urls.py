@@ -9,5 +9,10 @@ urlpatterns = [
     path('update_page/', views.update_page, name='update_page'),
     path('update_viewinfo_page/', views.update_viewinfo_page, name='update_viewinfo_page'),
     path('claim_page/', views.claim_page, name='claim_page'),  
-    path('claim_detail_page/<int:id>', views.claim_detail_page, name='claim_detail_page') 
+    path('claim_detail_page/<int:id>', views.claim_detail_page, name='claim_detail_page'),
+    path('claimed_succesfully/<int:id>', views.claimed_succesfully, name='claimed_succesfully'),
+    path('claimed_success/<int:id>', views.claimed_success, name='claimed_success'),
+    path('claim_verify_page/', views.claim_verify_page, name='claim_verify_page'),
+    path('claim_summary_page/', views.claim_summary_page, name='claim_summary_page'),
+    path('download_summary/', views.download_summary, name='download_summary'),
 ]
