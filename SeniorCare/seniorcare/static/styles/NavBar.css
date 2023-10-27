@@ -190,6 +190,7 @@ nav li{
   width: 2rem;
   top: 2rem;
   right: 2rem;
+  z-index: 10000;
  }
 
  .mobile-nav-toggle[aria-expanded="true"]{
