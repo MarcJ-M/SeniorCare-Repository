@@ -52,6 +52,7 @@ img{
 
 .form-group{
   display: flex;
+  position: relative;
 }
 
 .form-group input{
@@ -68,14 +69,19 @@ img{
   padding: 6px, 9px;
   border: 1px solid black;
   border-radius: 5px;
-  height: 54px;
+  height: 30px;
   font-size: 20px;
   width: 40%;
 }
 
+.form-btn{
+  display: flex;
+  
+}
 
 .form-group1{
   display: flex;
+  position: relative;
 }
 
 .form-group1 input{
@@ -188,7 +194,7 @@ img{
   }
 
   .form-select{
-      height: 45px;
+      height: 30px;
       font-size: 15px;
   }
 

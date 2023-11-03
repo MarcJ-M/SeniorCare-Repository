@@ -55,10 +55,12 @@ def register_page(request):
     return render(request, 'register_page.html', context)
 
 def update_page(request):
-    return render(request, 'update_page.html')
+    seniors = senior_list.objects.all()
+    return render(request, 'update_page.html', {'seniors': seniors})
 
-def update_viewinfo_page(request):
-    return render(request, 'update_viewinfo_page.html')
+def update_viewinfo_page(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'update_viewinfo_page.html', {'seniors': seniors})
 
 def claim_page(request):
     seniors = senior_list.objects.all()

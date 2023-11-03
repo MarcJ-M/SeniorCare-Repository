@@ -1,37 +1,45 @@
 {% extends 'main.html' %}
 
 {% block content %}
-{% load static %}
+  {% load static %}
 
-<link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/update_page.css' %}">
+    <link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/Update_page.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<body>
-  <div class="search">
-       <form action = "" class="search-bar">
-           <button type="submit"><img src="{% static 'image/Search.png' %}"></button>
-           <input type="text" placeholder="Search" name="q">
-       </form>
-   </div>
-  
-   <div class="table-update">
-       <center><table>
+<div class="claim-body">
+    <div class="container">
+        <div class="search-bar">      
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input placeholder="Search" type="text" class="left">
+        </div>
+        <h2 class="right">Brgy. 123 / Zone 00</h2>
+    </div>
+    
 
-           <caption>BRGY. 123 / Zone 44</caption>
-           <tr>
-               <th>ID</th>
-               <th>First Name</th>
-               <th>Last Name</th>
-               <th>Middle Name</th>
-               <th></th>
-           </tr>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Middle Initial</th>
+                    <th>Suffix</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-           <td>1</td>
-           <td>Marc Jehiel</td>
-           <td>Mangalindan</td>
-           <td>T.</td>
-           <td><a href="{% url 'update_viewinfo_page' %}">View Info</a></td>
-       </table></center>   
-   </div>
-</body>
-
+            <tbody>
+                {%for senior in seniors%}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td> {{ senior.last_name }}</td>
+                    <td>{{ senior.first_name }}</td>
+                    <td>{{ senior.middle_name }}</td>
+                    <td>{{ senior.suffix }}</td>
+                    <td><a href="/update_viewinfo_page/{{ senior.id }}" class="claim-btn">View Info</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>  
 {% endblock content%}
