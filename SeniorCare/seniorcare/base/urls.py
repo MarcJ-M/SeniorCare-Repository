@@ -11,6 +11,9 @@ urlpatterns = [
     path('edit/<int:id>', views.edit, name='edit'),
     path('update/<int:id>', views.update, name='update'),
 
+     path('search/', views.search, name='search'),
+     path('search1/', views.search1, name='search1'),
+
     path('claim_page/', views.claim_page, name='claim_page'),  
     path('claim_detail_page/<int:id>', views.claim_detail_page, name='claim_detail_page'),
     path('claimed_succesfully/<int:id>', views.claimed_succesfully, name='claimed_succesfully'),
