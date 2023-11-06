@@ -90,7 +90,9 @@ def search(request):
 def search1(request):
     if 'q' in request.GET:
         q= request.GET['q']
-        seniors= senior_list.objects.filter(last_name__icontains=q)
+        #seniors= senior_list.objects.filter(last_name__icontains=q)
+        multiple_q=Q(Q(last_name__icontains=q) | Q(first_name__icontains=q))
+        seniors = senior_list.objects.filter(multiple_q)
     else:
         seniors=senior_list.objects.all()
     context={'seniors': seniors}
