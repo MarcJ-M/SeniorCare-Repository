@@ -62,6 +62,20 @@ def update_viewinfo_page(request, id):
     seniors = senior_list.objects.get(id=id)
     return render(request, 'update_viewinfo_page.html', {'seniors': seniors})
 
+def edit(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'edit.html', {'seniors': seniors})
+
+def update(request, id):
+    form=register_form()
+    seniors = senior_list.objects.get(id=id)
+    if request.method=="POST":
+        form=register_form(request.POST, instance=seniors)
+        if form.is_valid():
+            form.save()
+            return redirect("/")
+    return render(request, 'update_viewinfo_page.html', {'seniors': seniors})
+
 def claim_page(request):
     seniors = senior_list.objects.all()
     return render(request, 'claim_page.html', {'seniors': seniors})
