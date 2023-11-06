@@ -66,6 +66,10 @@ def edit(request, id):
     seniors = senior_list.objects.get(id=id)
     return render(request, 'edit.html', {'seniors': seniors})
 
+
+
+
+#Need to debug for update
 def update(request, id):
     form=register_form()
     seniors = senior_list.objects.get(id=id)
@@ -75,6 +79,9 @@ def update(request, id):
             form.save()
             return redirect("/")
     return render(request, 'update_viewinfo_page.html', {'seniors': seniors})
+
+
+
 
 def search(request):
     if 'q' in request.GET:
