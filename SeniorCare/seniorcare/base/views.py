@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login,logout
 from django. contrib import messages
 from .models import senior_list
 from .forms import register_form
-
+from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.utils import timezone
 from django.http import HttpResponse
@@ -79,7 +79,9 @@ def update(request, id):
 def search(request):
     if 'q' in request.GET:
         q= request.GET['q']
-        seniors= senior_list.objects.filter(last_name__icontains=q)
+        #seniors= senior_list.objects.filter(last_name__icontains=q)
+        multiple_q=Q(Q(last_name__icontains=q) | Q(first_name__icontains=q))
+        seniors = senior_list.objects.filter(multiple_q)
     else:
         seniors=senior_list.objects.all()
     context={'seniors': seniors}
