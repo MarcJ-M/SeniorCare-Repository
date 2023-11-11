@@ -7,7 +7,8 @@ from .forms import register_form
 from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.utils import timezone
-from django.http import HttpResponse
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 import csv
 # Create your views here.
 
@@ -69,18 +70,34 @@ def edit(request, id):
 
 
 
-#Need to debug for update
+#pahirap to pero working na siya ngayon
 def update(request, id):
-    form=register_form()
+    firstname = request.POST['Firstname']
+    lastname = request.POST['Lastname']
+    middlename = request.POST['Middlename']
+    suffix = request.POST['Suffix']
+    sex = request.POST['sex']
+    #birthdate = request.POST['Birthdate']
+    age = request.POST['Age']
+    address = request.POST['Adress']
     seniors = senior_list.objects.get(id=id)
-    if request.method=="POST":
-        form=register_form(request.POST, instance=seniors)
-        if form.is_valid():
-            form.save()
-            return redirect("/")
-    return render(request, 'update_viewinfo_page.html', {'seniors': seniors})
+    seniors.first_name = firstname
+    seniors.last_name = lastname
+    seniors.middle_name = middlename
+    seniors.suffix = suffix
+    seniors.sex = sex
+    #seniors.birth_date = birthdate cinomment ko to kasi di tinatanggap ng model ung format ng date na nakadisplay sa viewinfo page kaya dinisable ko para di mag-error
+    seniors.age = age
+    seniors.address = address
+    seniors.save()
+    return redirect('update_viewinfo_page', seniors.id)
+    
 
-
+#oks na to delete function
+def delete(request, id):
+    seniors = senior_list.objects.get(id=id)
+    seniors.delete()
+    return redirect(update_page)
 
 
 def search(request):
