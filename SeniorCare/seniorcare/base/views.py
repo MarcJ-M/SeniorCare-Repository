@@ -80,17 +80,20 @@ def update(request, id):
     #birthdate = request.POST['Birthdate']
     age = request.POST['Age']
     address = request.POST['Adress']
-    seniors = senior_list.objects.get(id=id)
-    seniors.first_name = firstname
-    seniors.last_name = lastname
-    seniors.middle_name = middlename
-    seniors.suffix = suffix
-    seniors.sex = sex
+    if request.method == 'POST':
+        seniors = senior_list.objects.get(id=id)
+        seniors.first_name = firstname
+        seniors.last_name = lastname
+        seniors.middle_name = middlename
+        seniors.suffix = suffix
+        seniors.sex = sex
     #seniors.birth_date = birthdate cinomment ko to kasi di tinatanggap ng model ung format ng date na nakadisplay sa viewinfo page kaya dinisable ko para di mag-error
-    seniors.age = age
-    seniors.address = address
-    seniors.save()
-    return redirect('update_viewinfo_page', seniors.id)
+        seniors.age = age
+        seniors.address = address
+        seniors.save()
+        return redirect(update_page)
+    seniors = senior_list.objects.all()
+    return redirect('update_viewinfo_page', seniors.id,  {'seniors': seniors})
     
 
 #oks na to delete function

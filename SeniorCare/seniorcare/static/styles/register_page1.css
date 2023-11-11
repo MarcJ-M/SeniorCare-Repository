@@ -1,4 +1,6 @@
-
+a{
+  text-decoration: none;
+}
 
 img{
   width: 100%;
@@ -122,10 +124,22 @@ img{
   border: none;
   border-radius: 5px;
   padding: 10px 0;
-  margin-left: calc(50% - 5rem);
   font-weight: bold;
   background: #A0BFE0;
   transition: .2s;
+}
+
+.btn-container{
+  display: flex;
+  align-items: center;
+}
+
+.btn-edit{
+  margin-left: 100px;
+}
+.btn-delete{
+  margin-left: 20px;
+  margin-right: 5%;
 }
 
 .inner button:hover{

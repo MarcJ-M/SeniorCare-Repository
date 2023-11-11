@@ -3,14 +3,17 @@
   rel="stylesheet"
   type="text/css"
   media="screen"
-  href="{% static 'styles/update_viewinfo_page1.css' %}"
+  href="{% static 'styles/register_page1.css' %}"
 />
 
 <body>
   <div class="wrapper">
+
     <div class="inner">
+
       <form action="" method="POST">
         {% csrf_token %}
+
         <div class="form-wrapper">
           <input
             type="text"
@@ -91,6 +94,7 @@
             disabled
           />
         </div>
+
         <div class="form-wrapper">
           <input
             type="text"
@@ -102,21 +106,26 @@
           />
         </div>
 
-        <div class="form-btn">
-          <button type="submit">
-            <a href="/edit/{{seniors.id}}" class="btn-Next">Edit</a>
-          </button>
-          <button class="btn-delete">
-            <a href="/delete/{{seniors.id}}">Delete</a>
-          </button>
+        <div class="btn-container">
 
-          <!--<button type="delete" class="btn-delete">Delete</button>-->
-        </div>
-      </form>
+          
+              <button type="submit" class="btn-edit" style="text-decoration: none;">
+                <a href="/edit/{{seniors.id}}">Edit</a>
+              </button>
+          
+
+      
+              <button type="submit"  class="btn-delete" style="text-decoration: none;">
+                <a href="/delete/{{seniors.id}}">Delete</a>
+              </button>
+         
+      </div>
+        </form>
 
       <div class="photo-holder">
         <img src="{% static 'image/profile.png' %}" />
       </div>
+
     </div>
   </div>
 </body>
