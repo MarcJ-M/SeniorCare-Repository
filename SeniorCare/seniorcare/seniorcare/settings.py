@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 TWILIO_ACCOUNT_SID = 'AC2ec02df56c8e4df50f8fc3cf9d806542'
-TWILIO_AUTH_TOKEN = '1f084597cb37ef4e03dbfc6815c71fb3'
+TWILIO_AUTH_TOKEN = '1f694f52ed5c0314b0f84eeb5d14e7ac'
 TWILIO_PHONE_NUMBER = '+15673471882'
 
 # Quick-start development settings - unsuitable for production

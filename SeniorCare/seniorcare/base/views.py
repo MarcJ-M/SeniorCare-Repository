@@ -227,9 +227,8 @@ def download_summary(request):
 def sms(request):
     if request.method == 'POST':
         phone_number = request.POST.get('phone_number')  # User input for phone number
-        message = request.POST.get('message')  # User input for the message
+        body_message = request.POST.get('body_message')  # User input for the message
 
-        # Your Twilio Account SID, Auth Token, and Twilio phone number
         account_sid = settings.TWILIO_ACCOUNT_SID
         auth_token = settings.TWILIO_AUTH_TOKEN
         twilio_phone_number = settings.TWILIO_PHONE_NUMBER
@@ -238,7 +237,7 @@ def sms(request):
 
         try:
             message = client.messages.create(
-                body=message,
+                body=body_message,  # Use the retrieved message from the form
                 from_=twilio_phone_number,
                 to=phone_number
             )
@@ -246,4 +245,4 @@ def sms(request):
         except Exception as e:
             return JsonResponse({'status': 'Failed to send message. Error: ' + str(e)})
         
-    return render(request, 'sms.html'  )
+    return render(request, 'sms.html')
