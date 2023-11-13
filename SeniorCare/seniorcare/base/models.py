@@ -16,6 +16,7 @@ class senior_list(models.Model):
   is_claimed = models.BooleanField(default=False)
   claimed_date = models.DateTimeField(null=True, blank=True)
 
+
 class example(models.Model):
   first_name= models.CharField(max_length=20,null=True)
   last_name= models.CharField(max_length=20)

@@ -92,6 +92,7 @@ def update(request, id):
         seniors.address = address
         seniors.save()
         return redirect(update_page)
+        
     seniors = senior_list.objects.all()
     return redirect('update_viewinfo_page', seniors.id,  {'seniors': seniors})
     
