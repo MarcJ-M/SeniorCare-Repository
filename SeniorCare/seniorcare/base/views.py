@@ -10,6 +10,10 @@ from django.utils import timezone
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 import csv
+
+from django.conf import settings
+from django.http import JsonResponse
+from twilio.rest import Client
 # Create your views here.
 
 def index(request):
@@ -219,3 +223,27 @@ def download_summary(request):
 
     senior_list.objects.update(is_claimed=False)
     return response
+
+def sms(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')  # User input for phone number
+        message = request.POST.get('message')  # User input for the message
+
+        # Your Twilio Account SID, Auth Token, and Twilio phone number
+        account_sid = settings.TWILIO_ACCOUNT_SID
+        auth_token = settings.TWILIO_AUTH_TOKEN
+        twilio_phone_number = settings.TWILIO_PHONE_NUMBER
+
+        client = Client(account_sid, auth_token)
+
+        try:
+            message = client.messages.create(
+                body=message,
+                from_=twilio_phone_number,
+                to=phone_number
+            )
+            return JsonResponse({'status': 'Message sent successfully! SID: ' + message.sid})
+        except Exception as e:
+            return JsonResponse({'status': 'Failed to send message. Error: ' + str(e)})
+        
+    return render(request, 'sms.html'  )
