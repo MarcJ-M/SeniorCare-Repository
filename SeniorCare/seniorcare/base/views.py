@@ -8,12 +8,13 @@ from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.utils import timezone
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 import csv
 
 from django.conf import settings
 from django.http import JsonResponse
 from twilio.rest import Client
+
 # Create your views here.
 
 def index(request):

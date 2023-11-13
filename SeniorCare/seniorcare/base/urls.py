@@ -17,6 +17,8 @@ urlpatterns = [
 
      path('sms/', views.sms, name='sms'),
 
+  
+
     path('claim_page/', views.claim_page, name='claim_page'),  
     path('claim_detail_page/<int:id>', views.claim_detail_page, name='claim_detail_page'),
     path('claimed_succesfully/<int:id>', views.claimed_succesfully, name='claimed_succesfully'),
