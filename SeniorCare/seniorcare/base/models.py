@@ -15,3 +15,11 @@ class senior_list(models.Model):
   created=models.DateTimeField(auto_now_add=True)
   is_claimed = models.BooleanField(default=False)
   claimed_date = models.DateTimeField(null=True, blank=True)
+
+class SMSMessage(models.Model):
+    from_number = models.CharField(max_length=15)
+    body = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.from_number}: {self.body}"

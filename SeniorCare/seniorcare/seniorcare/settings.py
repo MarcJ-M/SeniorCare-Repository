@@ -15,9 +15,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-TWILIO_ACCOUNT_SID = 'ACe1c3e8573b8a5cab75c0a08c12f3c427'
-TWILIO_AUTH_TOKEN = '1b25f95b557f92009d4b3daa1e41e150'
-TWILIO_PHONE_NUMBER = '+14703751574'
+TWILIO_ACCOUNT_SID = 'AC2ec02df56c8e4df50f8fc3cf9d806542'
+TWILIO_AUTH_TOKEN = 'd58197180ad0160e1eca667f145e217f'
+TWILIO_PHONE_NUMBER = '+15673471882'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 

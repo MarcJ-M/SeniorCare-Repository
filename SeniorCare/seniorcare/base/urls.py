@@ -18,8 +18,8 @@ urlpatterns = [
      path('search1/', views.search1, name='search1'),
 
      path('sms/', views.sms, name='sms'),
-
-  
+     path('clear_messages/', views.clear_messages, name='clear_messages'),
+     path('delete_individual_message/<int:message_id>/',views.delete_individual_message, name='delete_individual_message'),
 
     path('claim_page/', views.claim_page, name='claim_page'),  
     path('claim_detail_page/<int:id>', views.claim_detail_page, name='claim_detail_page'),

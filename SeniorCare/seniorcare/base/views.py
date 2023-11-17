@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 from django. contrib import messages
-from .models import senior_list
+from .models import senior_list, SMSMessage
 from .forms import register_form
 from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
@@ -14,6 +14,9 @@ import csv
 from django.conf import settings
 from django.http import JsonResponse
 from twilio.rest import Client
+
+from django.contrib import messages
+from django.utils import timezone
 
 # Create your views here.
 
@@ -226,9 +229,12 @@ def download_summary(request):
     return response
 
 def sms(request):
+    messages = SMSMessage.objects.all()
+    context={'messages':messages}
+
     if request.method == 'POST':
-        phone_number = request.POST.get('phone_number')  # User input for phone number
-        body_message = request.POST.get('body_message')  # User input for the message
+        phone_number = request.POST.get('phone_number')
+        body_message = request.POST.get('body_message')
 
         account_sid = settings.TWILIO_ACCOUNT_SID
         auth_token = settings.TWILIO_AUTH_TOKEN
@@ -238,12 +244,42 @@ def sms(request):
 
         try:
             message = client.messages.create(
-                body=body_message,  # Use the retrieved message from the form
+                body=body_message,
                 from_=twilio_phone_number,
                 to=phone_number
             )
-            return JsonResponse({'status': 'Message sent successfully! SID: ' + message.sid})
+
+            current_date = timezone.now()
+
+            SMSMessage.objects.create(
+                from_number=settings.TWILIO_PHONE_NUMBER,
+                body=body_message,
+                timestamp=current_date
+            )
+
+            response_data = {
+                'status': 'success',
+                'message': f'Message sent successfully! SID: {message.sid}'
+            }
         except Exception as e:
-            return JsonResponse({'status': 'Failed to send message. Error: ' + str(e)})
-        
+            response_data = {
+                'status': 'error',
+                'message': f'Failed to send message. Error: {str(e)}'
+            }
+
+        return JsonResponse(response_data)
+
+    return render(request, 'sms.html', context )
+
+def clear_messages(request):
+    if request.method == 'POST':
+        SMSMessage.objects.all().delete()
     return render(request, 'sms.html')
+
+def delete_individual_message(request, message_id):
+    message = SMSMessage.objects.get(id=message_id)
+    message.delete()
+    return render(request, 'sms.html')
+    
+
+
