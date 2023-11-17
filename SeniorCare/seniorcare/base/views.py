@@ -279,7 +279,7 @@ def clear_messages(request):
 def delete_individual_message(request, message_id):
     message = SMSMessage.objects.get(id=message_id)
     message.delete()
-    return render(request, 'sms.html')
+    return redirect(sms)
     
 
 
