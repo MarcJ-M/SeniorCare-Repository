@@ -35,7 +35,7 @@ def index(request):
 
         if user is not None:
             login(request, user)
-            return redirect(home_page)
+            return redirect(update_page)
         else:
             messages.error(request, 'Invalid Username and Password') #if the user does not exist
     context ={'page':page}
