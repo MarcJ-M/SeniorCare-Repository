@@ -29,7 +29,6 @@
 
 <div class="container">
     <div class="send-sms">
-        <h2>Send SMS</h2>
         <form id="smsForm" action="{% url 'sms' %}" method="post">
             {% csrf_token %}
             <label for="toNumber">To Number:</label>
@@ -56,7 +55,7 @@
             <p class="body">{{ message.body }}</p>
             <p class="timestamp">{{ message.timestamp }}</p>
             <a href="{% url 'delete_individual_message' message.id %}">
-              <button>Delete</button>
+              <button >Delete</button>
         </div>
         {% endfor %}
     </div>
