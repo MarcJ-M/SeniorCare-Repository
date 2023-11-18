@@ -25,11 +25,6 @@ img{
   display: flex;
 }
 
-.inner.photo-holder{
-  width: 30%;
-}
-
-
 .inner form{
   width: 70%;
   margin-right: 30px;
@@ -150,6 +145,40 @@ img{
   background: #d6dfe9;
 }
 
+.image input{
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  color: gray;
+
+}
+
+.photo-holder{
+  text-align: center;
+}
+
+
+
+.camera-btn{
+  position: relative;
+  top: 20px;
+  width: 30%;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 15px;
+  font-weight: bold;
+  background: #A0BFE0;
+  transition: .2s;
+  color: black;
+}
+
+.camera-btn:hover{
+  background: #A0BFE0;
+
+}
+
+
+
 @media(max-width: 840px){
 
   
@@ -173,7 +202,7 @@ img{
 
   .inner form{
       width: 90%;
-      margin-top: calc(40% - -5%);
+      margin-top: 60%;
       margin-left: 30px;
   }
 
@@ -196,7 +225,7 @@ img{
   
   .inner form{
 
-      margin-top: 45%;
+      margin-top: 65%;
       margin-left: 25px;
   }
 
@@ -251,6 +280,13 @@ img{
       margin-left: calc(50% - 3.5rem);
   }
 }
+
+@media (max-width: 500px) and (min-height: 740px){
+  .inner form{
+    margin-top: 73%;
+}
+}
+
 
 .error{
   border: 1px solid;

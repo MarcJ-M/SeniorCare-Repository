@@ -15,6 +15,14 @@ from django.conf import settings
 from django.http import JsonResponse
 from twilio.rest import Client
 
+import json
+import base64
+import numpy as np
+import cv2
+import os
+from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 def index(request):
@@ -52,12 +60,13 @@ def main_page(request):
 
 def register_page(request):
     form = register_form()
-    if request.method =='POST':
-        form=register_form(request.POST)
+    if request.method == 'POST':
+        form = register_form(request.POST, request.FILES)  
         if form.is_valid():
-            form.save()
-            return redirect(register_page)
-    context={'form':form}
+            seniors = form.save()
+            return redirect('preview', id=seniors.id)
+
+    context = {'form': form}
     return render(request, 'register_page.html', context)
 
 def update_page(request):
@@ -247,3 +256,34 @@ def sms(request):
             return JsonResponse({'status': 'Failed to send message. Error: ' + str(e)})
         
     return render(request, 'sms.html')
+
+
+def preview(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'preview.html', {'seniors': seniors})
+
+def camera(request):
+    return render(request, 'capture_image.html')
+
+@csrf_exempt
+def capture_image(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            image_data = data.get('image_data', '')
+
+            image_data = base64.b64decode(image_data.split(',')[1])
+            nparr = np.frombuffer(image_data, np.uint8)
+            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+            filename = f"captured_image_{timestamp}.jpg"
+            filepath = os.path.join(settings.MEDIA_ROOT, filename)
+            cv2.imwrite(filepath, img)
+
+            return JsonResponse({'image_path': filepath})
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Invalid request method.'}, status=400)
