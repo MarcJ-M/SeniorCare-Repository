@@ -1,6 +1,7 @@
 from django.forms import ModelForm, widgets
 from .models import senior_list
 from django import forms
+from flatpickr import DatePickerInput
 
 class register_form(ModelForm):
   class Meta:
@@ -13,10 +14,13 @@ class register_form(ModelForm):
       'suffix': forms.TextInput(attrs={'placeholder': 'Suffix', 'required': True,'class': 'form-control'}),
       'age': forms.NumberInput(attrs={'placeholder': 'Age', 'required': True, 'class': 'form-control'}),
       'sex': forms.TextInput(attrs={'placeholder': 'Sex', 'required': True, 'class': 'form-control form-select'}),
-      'birth_date': forms.DateInput(attrs={'placeholder': 'Birth Date yyyy-mm-dd', 'required': True, 'class': 'form-control'}),
+      'birth_date': DatePickerInput(attrs={'placeholder': 'Birth Date yyyy-mm-dd', 'required': True, 'class': 'form-control'}),
       'address': forms.TextInput(attrs={'placeholder': 'Address', 'required': True, 'class': 'form-control'}),
       'OSCA_ID': forms.NumberInput(attrs={'placeholder': 'OSCA_ID', 'required': True, 'class': 'form-control'}),
+
+     
     }
+
   def clean_OSCA_ID(self):
     OSCA_ID = self.cleaned_data.get('OSCA_ID')    
     for instance in senior_list.objects.all():
