@@ -24,24 +24,27 @@ def index(request):
     return render(request, 'index.html'  )
 
 def index(request):
-    page='index'
-    if request.method =='POST':
-        username= request.POST.get('username')
+    page = 'index'
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
         password = request.POST.get('password')
 
         try:
             user = User.objects.get(username=username)
-        except: 
-            messages.error(request, 'User does not exist') #if the user does not exist
+        except User.DoesNotExist:
+            messages.error(request, 'User does not exist')
+            return render(request, 'index.html', {'page': page})
 
-        user=authenticate(request, username=username, password=password) #to make sure the credentials are correct
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
             return redirect(update_page)
         else:
-            messages.error(request, 'Invalid Username and Password') #if the user does not exist
-    context ={'page':page}
+            messages.error(request, 'Invalid Password')
+            
+    context = {'page': page}
     return render(request, 'index.html', context)
 
 def home_page(request):
