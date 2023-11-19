@@ -28,4 +28,8 @@ urlpatterns = [
     path('claim_verify_page/', views.claim_verify_page, name='claim_verify_page'),
     path('claim_summary_page/', views.claim_summary_page, name='claim_summary_page'),
     path('download_summary/', views.download_summary, name='download_summary'),
+
+     path('camera/', views.camera, name='camera'),
+    path('preview/<int:id>', views.preview, name='preview'),
+    path('capture_image/', views.capture_image, name='capture_image'),
 ]

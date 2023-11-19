@@ -44,13 +44,20 @@
                         <div class="error"><span>{{ error }}</span></div>
                     {% endfor %}
                 </div>
-
-                <button type="submit" class="btn-Next">Next</button>
-            </form>
-
-            <div class="photo-holder">
-                <img src="{% static 'image/profile.png' %}" alt="profile">
+                <div class="images">
+                    {{ form.senior_image }}
+                    {% for error in form.senior_image.errors %}
+                        <div class="error"><span>{{ error }}</span></div>
+                    {% endfor %}
+                  </div>
+          
+                  <button type="submit" class="btn-Next">Next</button>
+                </form>
+          
+                <div class="photo-holder">
+                  <img src="{% static 'image/profile.png' %}" alt="profile">
+                  <a href="{% url 'camera' %}" target="_blank" class="camera-btn">Take Picture</a>
+                </div>
             </div>
         </div>
-    </div>
 {% endblock content %}
