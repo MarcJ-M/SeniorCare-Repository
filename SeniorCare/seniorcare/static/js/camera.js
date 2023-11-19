@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("captured-image").src = data.image_path;
 
                 var currentDate = new Date();
-                var formattedDate = currentDate.toISOString().slice(0, 10); // Get the date part
+                var formattedDate = currentDate.toISOString().slice(0, 10); 
             
-                // Save the image locally with the current date in the file name and trigger download
+            
                 saveAndDownloadImage(imageDataUrl, "seniorcare" + formattedDate);
 
                 document.getElementById("retake-button").style.display = "block";
@@ -80,12 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
 function saveAndDownloadImage(dataURL, fileName) {
     var link = document.createElement('a');
     link.href = dataURL;
-    link.download = fileName + '.png'; // You can change the file extension as needed
-
-    // Append the link to the body and trigger the click event
+    link.download = fileName + '.png'; 
+   
     document.body.appendChild(link);
     link.click();
 
-    // Remove the link from the body
     document.body.removeChild(link);
 }
