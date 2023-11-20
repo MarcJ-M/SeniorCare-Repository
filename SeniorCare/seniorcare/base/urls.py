@@ -34,6 +34,8 @@ urlpatterns = [
      path('camera/', views.camera, name='camera'),
     path('preview/<int:id>', views.preview, name='preview'),
     path('capture_image/', views.capture_image, name='capture_image'),
+
+    path('download_summary/', views.download_summary, name='download_summary'),
 ]
 
 if settings.DEBUG:

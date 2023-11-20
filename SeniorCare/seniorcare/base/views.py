@@ -26,6 +26,51 @@ import os
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
+
+from django.http import HttpResponseRedirect, FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+
+
+#File Output (PDF)
+def download_summary(request):
+    buf = io.BytesIO()
+    c = canvas.Canvas(buf, pagesize = letter, buttomup = 0)
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Arial", 12)
+
+
+    senior_ob = senior_list.Objects.all()
+
+    
+    lines = []
+
+    for senior_list in senior_ob:
+        lines.append(senior_list.first_name)
+        lines.append(senior_list.last_name)
+        lines.append(senior_list.middle_name)
+        lines.append(senior_list.suffix)
+        lines.append(senior_list.age)
+        lines.append(senior_list.address)
+        lines.append(senior_list.OSCA_ID)
+        lines.append(senior_list.updated)
+        lines.append(senior_list.is_claimed)
+        lines.append(senior_list.claimed_date)
+        lines.append("--------------------------")
+
+    for line in lines:
+        textob.textLine(line)
+
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    return FileResponse(buf, as_attachment=True, filename='summary.pdf')
+
 # Create your views here.
 
 def index(request):
