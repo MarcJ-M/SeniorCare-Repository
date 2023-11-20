@@ -122,6 +122,7 @@ img{
 }
 
 .inner button{
+  margin-left: 190px;
   width: 30%;
   border: none;
   border-radius: 5px;
@@ -155,7 +156,7 @@ img{
 .image input{
   width: 100%;
   padding-top: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
   padding-left: 10px;
   color: gray;
@@ -168,6 +169,8 @@ img{
 .photo-holder{
   text-align: center;
 }
+
+
 
 .camera-btn{
   position: relative;
@@ -298,82 +301,4 @@ img{
 }
 
 
-.error{
-  border: 1px solid;
-  margin: 10px 0px;
-  padding: 15px 10px 15px 50px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
 
-}
-
-
-.error{
-  color: #D8000C;
-  background-color: #FFBABA;
-  background-image: url('https://i.imgur.com/GnyDvKN.png');
-}
-
-
-.confirmation-popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 40%;
-  border-radius: 10px;
-}
-
-.confirmation-popup .header{
-  border-radius: 10px 10px 0 0;
-  width: 100%;
-  background: #4A55A2;
-  padding: 20px;
-}
-
-.confirmation-popup .popup-body{
-  padding-bottom: 30px;
-  padding-top: 30px;
-}
-
-.confirmation-popup .popup-body p{
-  font-size: 20px;
-}
-
-
-.confirmation-popup button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.warning-message {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin-bottom: 10px;
-  width: 100%;
-  background-color: #FFBABA;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #D8000C;
-  border-radius: 0;
-  z-index: 1000; 
-}
-
-
-#form-warning-message {
-  display: none;
-  background-color: #FFBABA; 
-  color: #D8000C;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #D8000C; 
-  border-radius: 5px; 
-  margin-top: 10px;
-}

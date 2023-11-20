@@ -16,6 +16,7 @@ class register_form(ModelForm):
             'birth_date': forms.DateInput(attrs={'placeholder': 'Birth Date', 'required': True, 'class': 'form-control', 'type': 'date'}),
             'address': forms.TextInput(attrs={'placeholder': 'Address', 'required': True, 'class': 'form-control'}),
             'OSCA_ID': forms.NumberInput(attrs={'placeholder': 'OSCA_ID', 'required': True, 'class': 'form-control'}),
+            'senior_image': forms.FileInput(attrs={'required': False, 'id': 'image', 'class':'form-control'}), 
         }
 
     def clean_OSCA_ID(self):

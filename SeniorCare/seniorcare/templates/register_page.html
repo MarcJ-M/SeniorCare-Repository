@@ -2,10 +2,19 @@
 
 {% block content %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/register_page1.css' %}">
+    <link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/register_page1.css' %}" >
+    <script defer src="{% static 'js/camera.js' %}"></script>
+    
+    
+    
+    
     <div class="wrapper">
+        
         <div class="inner">
-            <form class="form" method="post">
+
+            <form class="form" method="post" enctype="multipart/form-data" id="registrationForm">
+                <div id="form-warning-message">
+                </div>
                 {% csrf_token %}
 
                 <div class="form-errors">
@@ -44,20 +53,26 @@
                         <div class="error"><span>{{ error }}</span></div>
                     {% endfor %}
                 </div>
-                <div class="images">
+                <div class="image">
                     {{ form.senior_image }}
-                    {% for error in form.senior_image.errors %}
-                        <div class="error"><span>{{ error }}</span></div>
-                    {% endfor %}
-                  </div>
-          
-                  <button type="submit" class="btn-Next">Next</button>
-                </form>
-          
-                <div class="photo-holder">
-                  <img src="{% static 'image/profile.png' %}" alt="profile">
-                  <a href="{% url 'camera' %}" target="_blank" class="camera-btn">Take Picture</a>
                 </div>
+          
+                <button type="button" class="btn-Next" onclick="showConfirmation()">Next</button>
+            </form>
+
+        <div class="photo-holder">
+            <img src="{% static 'image/profile.png' %}" alt="profile">
+            <a href="{% url 'camera' %}" target="_blank" class="camera-btn">Take Picture</a>
+        </div>
+
+        <div id="confirmation-popup" class="confirmation-popup">
+            <div class="header"></div>
+            <div class="popup-body">
+                <p>Are you sure you want to submit the form?</p>
+                <button onclick="submitForm()">Yes</button>
+                <button onclick="hideConfirmation()">Cancel</button>
             </div>
         </div>
+    </div>
+  </div>
 {% endblock content %}
