@@ -113,3 +113,11 @@ button:hover {
     font-size: 0.7em;
   }
 }
+
+@media (max-width: 930px){
+
+  .container{
+      max-width: 90vw;
+  }
+}
+
