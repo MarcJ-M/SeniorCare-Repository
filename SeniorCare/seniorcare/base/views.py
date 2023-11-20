@@ -292,6 +292,7 @@ def delete_individual_message(request, message_id):
     message.delete()
     return redirect(sms)
     
+
 def preview(request, id):
     seniors = senior_list.objects.get(id=id)
     return render(request, 'preview.html', {'seniors': seniors})
@@ -310,15 +311,17 @@ def capture_image(request):
             nparr = np.frombuffer(image_data, np.uint8)
             img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-            timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-            filename = f"captured_image_{timestamp}.jpg"
+            timestamp = datetime.now().strftime("%Y%m%d%")
+            filename = f"captured_image_{timestamp}.png"
             filepath = os.path.join(settings.MEDIA_ROOT, filename)
             cv2.imwrite(filepath, img)
-
+            
             return JsonResponse({'image_path': filepath})
 
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
+
+
 
