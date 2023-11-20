@@ -13,11 +13,13 @@ img{
   outline: none;
 }
 
-.wrapper{
-  min-height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .inner{
@@ -122,6 +124,7 @@ img{
 }
 
 .inner button{
+  margin-left: 190px;
   width: 30%;
   border: none;
   border-radius: 5px;
@@ -131,18 +134,15 @@ img{
   transition: .2s;
 }
 
-.btn-container{
+.form-btn{
   display: flex;
   align-items: center;
 }
 
 .btn-edit{
-  margin-left: 100px;
+  align-items: center;
 }
-.btn-delete{
-  margin-left: 20px;
-  margin-right: 5%;
-}
+
 
 .inner button:hover{
   background: #4A55A2;
@@ -155,7 +155,7 @@ img{
 .image input{
   width: 100%;
   padding-top: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   margin-bottom: 10px;
   padding-left: 10px;
   color: gray;
@@ -168,6 +168,8 @@ img{
 .photo-holder{
   text-align: center;
 }
+
+
 
 .camera-btn{
   position: relative;
@@ -230,12 +232,12 @@ img{
 @media(max-width: 385px){
 
   .inner .photo-holder{
-      top: min(25%, 16%);
+      top: min(50%, 100%);
   }
   
   .inner form{
 
-      margin-top: 65%;
+      margin-top: 30%;
       margin-left: 25px;
   }
 
@@ -293,87 +295,17 @@ img{
 
 @media (max-width: 500px) and (min-height: 740px){
   .inner form{
-    margin-top: 73%;
+    margin-top: 60%;
 }
 }
 
 
-.error{
-  border: 1px solid;
-  margin: 10px 0px;
-  padding: 15px 10px 15px 50px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
+@media (max-width: 930px){
 
+  .container{
+      max-width: 90vw;
+  }
 }
 
 
-.error{
-  color: #D8000C;
-  background-color: #FFBABA;
-  background-image: url('https://i.imgur.com/GnyDvKN.png');
-}
 
-
-.confirmation-popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 40%;
-  border-radius: 10px;
-}
-
-.confirmation-popup .header{
-  border-radius: 10px 10px 0 0;
-  width: 100%;
-  background: #4A55A2;
-  padding: 20px;
-}
-
-.confirmation-popup .popup-body{
-  padding-bottom: 30px;
-  padding-top: 30px;
-}
-
-.confirmation-popup .popup-body p{
-  font-size: 20px;
-}
-
-
-.confirmation-popup button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.warning-message {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin-bottom: 10px;
-  width: 100%;
-  background-color: #FFBABA;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #D8000C;
-  border-radius: 0;
-  z-index: 1000; 
-}
-
-
-#form-warning-message {
-  display: none;
-  background-color: #FFBABA; 
-  color: #D8000C;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #D8000C; 
-  border-radius: 5px; 
-  margin-top: 10px;
-}

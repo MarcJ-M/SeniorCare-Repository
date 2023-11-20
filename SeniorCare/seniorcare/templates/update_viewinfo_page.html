@@ -3,11 +3,11 @@
   rel="stylesheet"
   type="text/css"
   media="screen"
-  href="{% static 'styles/register_page1.css' %}"
+  href="{% static 'styles/update_viewinfo_page2.css' %}"
 />
 
 <body>
-  <div class="wrapper">
+  <div class="container">
 
     <div class="inner">
 
@@ -107,20 +107,17 @@
         </div>
 
         <div class="btn-container">
-
-          
               <button type="submit" class="btn-edit" style="text-decoration: none;">
                 <a href="/edit/{{seniors.id}}">Edit</a>
               </button>
           
-
-      
               <button type="submit"  class="btn-delete" style="text-decoration: none;">
                 <a href="/delete/{{seniors.id}}">Delete</a>
               </button>
-         
       </div>
         </form>
+
+
 
         {% if seniors.senior_image %}
         <div class="photo-holder">

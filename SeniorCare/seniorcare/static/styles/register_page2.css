@@ -20,7 +20,6 @@ img{
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 
 .inner{
@@ -140,7 +139,7 @@ img{
 }
 
 .btn-edit{
-  margin-left: 50px;
+  margin-left: 100px;
 }
 .btn-delete{
   margin-left: 20px;
@@ -206,12 +205,11 @@ img{
 
 
 @media(max-width: 550px){
- 
   .inner .photo-holder{
       width: 50%;
       position: absolute;
       top: calc(20% - 5%);
-      right: 25%;
+      right: 23%;
   }
 
   .inner form{
@@ -225,14 +223,13 @@ img{
   }
 
   .inner button{
-      width: 60%;
-      margin-left: calc(30% - 3.5rem);
+      width: 40%;
+      margin-left: calc(50% - 3.5rem);
   }
 }
 
 
 @media(max-width: 385px){
-
 
   .inner .photo-holder{
       top: min(25%, 16%);
@@ -240,13 +237,14 @@ img{
   
   .inner form{
 
-      margin-top: 50%;
+      margin-top: 65%;
+      margin-left: 25px;
   }
 
   .form-control{
       width: 93%;
       height: 30px;
-      font-size: 15px;
+      font-size: 10px;
   }
 
   .form-wrapper {
@@ -266,26 +264,26 @@ img{
   }
 
   .form-wrapper input{
-    font-size: 15px;
+    font-size: 10px;
     padding: 20px 10px;
     width: 100%;
   }
 
   .form-group input{
-    font-size: 15px;
+    font-size: 10px;
     padding: 20px 10px;
     width: 100%;
   }
 
   .form-group1 input{
-    font-size: 15px;
+    font-size: 5px;
     padding: 20px 10px;
     width: 100%;
   }
 
   .form-select{
       height: 45px;
-      font-size: 15px;
+      font-size: 10px;
   }
 
   .inner button{
@@ -297,9 +295,89 @@ img{
 
 @media (max-width: 500px) and (min-height: 740px){
   .inner form{
-    margin-top: 60%;
+    margin-top: 73%;
+}
 }
 
+
+.error{
+  border: 1px solid;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+
+}
+
+
+.error{
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url('https://i.imgur.com/GnyDvKN.png');
+}
+
+
+.confirmation-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 40%;
+  border-radius: 10px;
+}
+
+.confirmation-popup .header{
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  background: #4A55A2;
+  padding: 20px;
+}
+
+.confirmation-popup .popup-body{
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.confirmation-popup .popup-body p{
+  font-size: 20px;
+}
+
+
+.confirmation-popup button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.warning-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: #FFBABA;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #D8000C;
+  border-radius: 0;
+  z-index: 1000; 
+}
+
+
+#form-warning-message {
+  display: none;
+  background-color: #FFBABA; 
+  color: #D8000C;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #D8000C; 
+  border-radius: 5px; 
+  margin-top: 10px;
 }
 
 @media (max-width: 930px){
@@ -308,4 +386,3 @@ img{
       max-width: 90vw;
   }
 }
-

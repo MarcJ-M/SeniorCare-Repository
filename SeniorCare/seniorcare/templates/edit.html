@@ -3,11 +3,11 @@
   rel="stylesheet"
   type="text/css"
   media="screen"
-  href="{% static 'styles/update_viewinfo_page2.css' %}"
+  href="{% static 'styles/edit2.css' %}"
 />
 
 <body>
-  <div class="wrapper">
+  <div class="container">
     <div class="inner">
       <form action="/update/{{seniors.id}}" method="POST">
         {% csrf_token %}
@@ -96,7 +96,7 @@
         </div>
 
         <div class="form-btn">
-          <button type="submit" class="btn-delete">Save</button>
+          <button type="submit" class="btn-edit">Save</button>
         </div>
 
       </form>
