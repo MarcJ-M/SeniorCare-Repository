@@ -316,3 +316,39 @@ img{
   background-image: url('https://i.imgur.com/GnyDvKN.png');
 }
 
+
+.confirmation-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 40%;
+  border-radius: 10px;
+}
+
+.confirmation-popup .header{
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  background: #4A55A2;
+  padding: 20px;
+}
+
+.confirmation-popup .popup-body{
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.confirmation-popup .popup-body p{
+  font-size: 20px;
+}
+
+
+.confirmation-popup button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}

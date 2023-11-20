@@ -87,3 +87,14 @@ function saveAndDownloadImage(dataURL, fileName) {
 
     document.body.removeChild(link);
 }
+
+
+function showConfirmation() {
+    var confirmationPopup = document.getElementById('confirmation-popup');
+    confirmationPopup.style.display = 'block';
+  }
+
+  function hideConfirmation() {
+    var confirmationPopup = document.getElementById('confirmation-popup');
+    confirmationPopup.style.display = 'none';
+  }
