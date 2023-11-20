@@ -2,10 +2,11 @@
 
 {% block content %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/register_page1.css' %}">
+    <link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/register_page1.css' %}" >
+    <script defer src="{% static 'js/camera.js' %}"></script>
     <div class="wrapper">
         <div class="inner">
-            <form class="form" method="post">
+            <form class="form" method="post" id="registrationForm">
                 {% csrf_token %}
 
                 <div class="form-errors">
@@ -63,7 +64,7 @@
             <div class="header"></div>
             <div class="popup-body">
                 <p>Are you sure you want to submit the form?</p>
-                <button onclick="document.forms['registrationForm'].submit()">Yes</button>
+                <button onclick="submitForm()">Yes</button>
                 <button onclick="hideConfirmation()">Cancel</button>
             </div>
         </div>

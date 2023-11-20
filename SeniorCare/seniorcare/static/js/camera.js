@@ -94,7 +94,17 @@ function showConfirmation() {
     confirmationPopup.style.display = 'block';
   }
 
-  function hideConfirmation() {
+
+function submitForm() {
+    const form = document.getElementById('registrationForm');
+    if (form) {
+        form.submit();
+    } else {
+        console.error("Form not found");
+    }
+}
+
+function hideConfirmation() {
     var confirmationPopup = document.getElementById('confirmation-popup');
     confirmationPopup.style.display = 'none';
-  }
+}
