@@ -4,9 +4,17 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" media='screen' href="{% static 'styles/register_page1.css' %}" >
     <script defer src="{% static 'js/camera.js' %}"></script>
+    
+    
+    
+    
     <div class="wrapper">
+        
         <div class="inner">
-            <form class="form" method="post" id="registrationForm">
+
+            <form class="form" method="post" enctype="multipart/form-data" id="registrationForm">
+                <div id="form-warning-message">
+                </div>
                 {% csrf_token %}
 
                 <div class="form-errors">
@@ -45,12 +53,9 @@
                         <div class="error"><span>{{ error }}</span></div>
                     {% endfor %}
                 </div>
-                <div class="images">
+                <div class="image">
                     {{ form.senior_image }}
-                    {% for error in form.senior_image.errors %}
-                        <div class="error"><span>{{ error }}</span></div>
-                    {% endfor %}
-                  </div>
+                </div>
           
                 <button type="button" class="btn-Next" onclick="showConfirmation()">Next</button>
             </form>
