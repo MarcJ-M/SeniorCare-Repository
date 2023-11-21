@@ -27,6 +27,7 @@ yesButton.addEventListener('click', function () {
 
 okButton.addEventListener('click', function () {
     additionalPopup.style.display = 'none';
-    window.location.href = "{% url 'camera_page' seniors.id %}";
+    const cameraPageUrl = blur.getAttribute('data-camera-url');
+    window.location.href = cameraPageUrl;
 });
 });
