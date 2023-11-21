@@ -33,31 +33,26 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
-from django.template.loader import render_to_string
-from weasyprint import HTML
-import tempfile
-
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 #File Output (PDF)
-def export_pdf(request):
+def report_summary(request):
+    template_path = 'report.html'
+    context = {'myvar': 'this is your template context'}
+    # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=senior_list' + \
-        str(datetime.datetime.now())+'.pdf'
-    response['Content-Transfer-Ecoding'] = 'binary'
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
 
-    html_string=render_to_string(
-        'senior_list/pdf_output.html', {'senior_list': []})
-    html=HTML(string=html_string)
-
-    result=html.write.pdf()
-
-    with tempfile.NamedTemporaryFile(delete=True) as output:
-        output.write(result)
-        output.flush()
-
-        output=open(output.name,'rb')
-        response.write(output.read())
-    
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
 
@@ -231,47 +226,25 @@ def claim_summary_page(request):
 
 
 def download_summary(request):
-    current_datetime = timezone.now()
-    formatted_datetime = current_datetime.strftime('%Y-%m-%d')
-    filename = f"summary_{formatted_datetime}.csv"
+    template_path = 'report.html'
+    context = {'myvar': 'this is your template context'}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
 
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = f'attachment; filename="{filename}"'
-    writer = csv.writer(response)
-
-    writer.writerow(['Claimed Seniors'])
-    writer.writerow(['Last Name', 'First Name', 'Age', 'OSCA ID', 'Claimed Date', 'Status'])
-    claimed_seniors = senior_list.objects.filter(is_claimed=True).order_by('last_name')
-    for senior in claimed_seniors:
-        claimed_status = 'Claimed'
-        claimed_date = senior.claimed_date.strftime('%B %d, %Y')
-        writer.writerow([
-            senior.last_name,
-            senior.first_name,
-            senior.age,
-            senior.OSCA_ID,
-            claimed_date,
-            claimed_status
-        ])
-
-    writer.writerow([])
-    writer.writerow(['Unclaimed Seniors'])
-    writer.writerow(['Last Name', 'First Name', 'Age', 'OSCA ID', 'Claimed Date', 'Status'])
-    unclaimed_seniors = senior_list.objects.filter(is_claimed=False).order_by('last_name')
-    for senior in unclaimed_seniors:
-        claimed_status = 'Unclaimed'
-        claimed_date = senior.claimed_date.strftime('%B %d, %Y')
-        writer.writerow([
-            senior.last_name,
-            senior.first_name,
-            senior.age,
-            senior.OSCA_ID,
-            claimed_date,
-            claimed_status
-        ])
-
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
     senior_list.objects.update(is_claimed=False)
     return response
+
+    
 
 def sms(request):
     messages = SMSMessage.objects.all()

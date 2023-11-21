@@ -29,13 +29,13 @@ urlpatterns = [
     path('claimed_success/<int:id>', views.claimed_success, name='claimed_success'),
     path('claim_verify_page/', views.claim_verify_page, name='claim_verify_page'),
     path('claim_summary_page/', views.claim_summary_page, name='claim_summary_page'),
-    path('export_pdf/', views.export_pdf, name='export_pdf'),
 
      path('camera/', views.camera, name='camera'),
     path('preview/<int:id>', views.preview, name='preview'),
     path('capture_image/', views.capture_image, name='capture_image'),
 
     path('download_summary/', views.download_summary, name='download_summary'),
+    path('report_summary/', views.report_summary, name='report_summary'),
 ]
 
 if settings.DEBUG:
