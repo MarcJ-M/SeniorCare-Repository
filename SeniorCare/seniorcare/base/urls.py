@@ -34,15 +34,8 @@ urlpatterns = [
     path('preview/<int:id>', views.preview, name='preview'),
     path('capture_image/', views.capture_image, name='capture_image'),
 
-<<<<<<< HEAD
     path('download_summary/', views.download_summary, name='download_summary'),
     path('report_summary/', views.report_summary, name='report_summary'),
-=======
-    path('camera_page/<int:id>/', views.camera_page, name='camera_page'),
-    path('facial_recognition/<int:id>/', views.facial_recognition, name='facial_recognition'),
-    path('match/<int:id>/', views.match, name='match'),
-    
->>>>>>> b017a2a97b33491cba099a838b895e4adf3adf43
 ]
 
 if settings.DEBUG:
