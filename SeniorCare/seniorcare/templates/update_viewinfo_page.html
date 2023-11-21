@@ -128,6 +128,7 @@
       </div>
         </form>
 
+<<<<<<< HEAD
 
 
         {% if seniors.senior_image %}
@@ -139,6 +140,17 @@
             <img src="{% static 'image/profile.png' %}" alt="profile">
         </div>
     {% endif %}
+=======
+        {% if seniors.senior_image %}
+          <div class="photo-holder">
+            <img src="{{ seniors.senior_image.url }}" alt="profile">
+          </div>
+        {% else %}
+          <div class="photo-holder">
+            <img src="{% static 'image/profile.png' %}" alt="profile">
+          </div>
+        {% endif %}
+>>>>>>> b017a2a97b33491cba099a838b895e4adf3adf43
 
     </div>
   </div>
