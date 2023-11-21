@@ -3,7 +3,7 @@
   rel="stylesheet"
   type="text/css"
   media="screen"
-  href="{% static 'styles/update_viewinfo_page2.css' %}"
+  href="{% static 'styles/update_viewinfo_page.css' %}"
 />
 
 <body>
@@ -91,6 +91,17 @@
             name="Adress"
             placeholder="Address"
             value="{{ seniors.address}}"
+            disabled
+          />
+        </div>
+
+        <div class="form-wrapper">
+          <input
+            type="text"
+            class="form-control"
+            name="Contact No."
+            placeholder="Address"
+            value="{{ seniors.phone_number}}"
             disabled
           />
         </div>
