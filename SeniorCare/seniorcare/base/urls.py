@@ -24,7 +24,7 @@ urlpatterns = [
      path('delete_individual_message/<int:message_id>/',views.delete_individual_message, name='delete_individual_message'),
 
     path('claim_page/', views.claim_page, name='claim_page'),  
-    path('claim_detail_page/<int:id>', views.claim_detail_page, name='claim_detail_page'),
+    path('claim_detail_page/<int:id>/', views.claim_detail_page, name='claim_detail_page'),
     path('claimed_succesfully/<int:id>', views.claimed_succesfully, name='claimed_succesfully'),
     path('claimed_success/<int:id>', views.claimed_success, name='claimed_success'),
     path('claim_verify_page/', views.claim_verify_page, name='claim_verify_page'),
@@ -34,6 +34,11 @@ urlpatterns = [
      path('camera/', views.camera, name='camera'),
     path('preview/<int:id>', views.preview, name='preview'),
     path('capture_image/', views.capture_image, name='capture_image'),
+
+    path('camera_page/<int:id>/', views.camera_page, name='camera_page'),
+    path('facial_recognition/<int:id>/', views.facial_recognition, name='facial_recognition'),
+    path('match/<int:id>/', views.match, name='match'),
+    
 ]
 
 if settings.DEBUG:

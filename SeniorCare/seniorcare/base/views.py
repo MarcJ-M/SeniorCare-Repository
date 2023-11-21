@@ -25,6 +25,8 @@ import cv2
 import os
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+import face_recognition
+import dlib
 
 # Create your views here.
 
@@ -324,4 +326,62 @@ def capture_image(request):
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
+
+@csrf_exempt
+def facial_recognition(request, id):
+    seniors = senior_list.objects.get(id=id)
+
+    if request.method == 'POST':
+        captured_image_data_url = request.POST.get('captured_image', '')
+        
+        _, captured_image_base64 = captured_image_data_url.split(',')
+        captured_image = np.frombuffer(base64.b64decode(captured_image_base64), np.uint8)
+
+        captured_image_np = cv2.imdecode(captured_image, -1)
+
+        if captured_image_np is None:
+            return JsonResponse({'error': 'Unable to load the image.'})
+
+        known_face_encoding = get_known_face_encoding(seniors.senior_image.path)
+
+        face_locations = face_recognition.face_locations(captured_image_np)
+        captured_face_encodings = face_recognition.face_encodings(captured_image_np, face_locations)
+
+        for captured_face_encoding in captured_face_encodings:
+            match = compare_faces(known_face_encoding, captured_face_encoding)
+
+            if match:
+                seniors.is_claimed = True
+                seniors.claimed_date = timezone.now()
+                seniors.save()
+
+                return JsonResponse({'match': True})
+    
+    return JsonResponse({'match': False})
+
+def get_known_face_encoding(image_path):
+
+    known_image = face_recognition.load_image_file(image_path)
+
+    known_face_encoding = face_recognition.face_encodings(known_image)
+
+    if known_face_encoding:
+        return known_face_encoding[0] 
+    else:
+        return None
+
+def compare_faces(known_encoding, captured_encoding):
+    threshold = 0.5
+    distance = face_recognition.face_distance([known_encoding], captured_encoding)
+
+    return distance <= threshold
+
+
+def camera_page(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'camera.html', {'seniors': seniors})
+
+def match(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'match.html', {'seniors': seniors})
 
