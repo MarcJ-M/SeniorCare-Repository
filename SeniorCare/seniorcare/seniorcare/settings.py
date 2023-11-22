@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'seniorcare.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'webhost',
+        'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'C6F6FDGECA3B-C-bF562646e*e5F33d2',
         'HOST': 'monorail.proxy.rlwy.net',
