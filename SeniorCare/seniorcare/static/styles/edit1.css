@@ -136,7 +136,7 @@ img{
 
 .form-btn{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .inner button:hover{
@@ -188,8 +188,6 @@ img{
 
 
 @media(max-width: 840px){
-
-  
   .inner .photo-holder{
       width: 30%;
   }
@@ -201,40 +199,63 @@ img{
 
 
 @media(max-width: 550px){
+
+  .container{
+    max-width: 95%;
+  }
+
   .inner .photo-holder{
-      width: 50%;
+      width: 70%;
       position: absolute;
-      top: calc(20% - 5%);
-      right: 25%;
+      right: 15%;
   }
 
   .inner form{
-      width: 90%;
-      margin-top: 60%;
-      margin-left: 30px;
+    margin-top: 80%;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
   }
 
   .form-control{
       width: 95%;
   }
 
-  .inner button{
-      width: 40%;
-      margin-left: calc(50% - 3.5rem);
-  }
 }
+@media(max-width: 435px){
 
+  .camera-btn{
+    position: relative;
+    padding: 10px 20px 10px 20px;
+    font-size: 15px;
+    top: 12px;
+  }
+
+  .inner form{
+    margin-top: 88%;
+}
+}
 
 @media(max-width: 385px){
 
-  .inner .photo-holder{
-      top: min(50%, 100%);
+  .camera-btn{
+    font-size: 12px;
   }
-  
-  .inner form{
 
-      margin-top: 30%;
-      margin-left: 25px;
+
+  .image input{
+    padding-bottom: 35px;
+  }
+
+  .inner .photo-holder{
+    width: 50%;
+    position: absolute;
+    right: 25%;
+}
+
+  .inner form{
+      margin-top: 70%;
+      margin-left: 0px;
   }
 
   .form-control{
@@ -281,27 +302,9 @@ img{
       height: 45px;
       font-size: 15px;
   }
-
-  .inner button{
-      margin-top: 5px;
-      width: 40%;
-      margin-left: calc(50% - 3.5rem);
-  }
-}
-
-@media (max-width: 500px) and (min-height: 740px){
-  .inner form{
-    margin-top: 60%;
-}
 }
 
 
-@media (max-width: 930px){
-
-  .container{
-      max-width: 90vw;
-  }
-}
 
 
 

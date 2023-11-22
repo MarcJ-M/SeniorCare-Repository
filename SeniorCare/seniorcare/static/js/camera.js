@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("retake-button").style.display = "block";
         document.getElementById("upload-button").style.display = "block";
 
+        document.getElementById("capture-button").style.display = "none";
+        document.getElementById("cancel-button").style.display = "none";
+
         document.getElementById("captured-image").src = "";
     });
 
@@ -63,6 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("retake-button").style.display = "none";
         document.getElementById("upload-button").style.display = "none";
+
+        document.getElementById("capture-button").style.display = "block";
+        document.getElementById("cancel-button").style.display = "block";
 
         document.getElementById("captured-image").src = "";
     });

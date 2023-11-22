@@ -12,21 +12,21 @@
 .container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
   padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 10px;
 }
 
 
 .left {
-  order: 1;
   font-size: 40px;
   color: white;
-  margin-top: 1px;
 }
 
 
 .right {
-  order: 2;
+  justify-content: end;
   font-size: 40px;
   color: white;
   margin-top: 1px;
@@ -34,12 +34,12 @@
 
 .search-bar {
   position: relative;
-  width: 300px;
-  left: auto;
+  width: 100%;
+  left: 0;
 }
 
 .search-bar input {
-  width:180%;
+  width:150%;
   padding-left: 70px; 
   height: 50px;
   background-color: white;
@@ -199,9 +199,6 @@ tr:nth-child(even) td{
 
 
 @media(max-width: 1100px){
-  .search-bar {
-      width: 230px;
-  }
 
   .right {
       margin-top: 10px;
@@ -209,39 +206,15 @@ tr:nth-child(even) td{
   }
 }
 
-@media(max-width: 900px){
-  .search-bar {
-      width: 200px;
-  }
-}
-
 @media(max-width: 790px){
-  .search-bar {
-      width: 190px;
-  }
-
       
   .right {
       display: none;
   }
 
-
-
 }
 
 @media(max-width: 700px){
-
-  .search-bar {
-      width: 390px;
-  }
-
-  .search-bar input{
-      width: 100%;
-      height: 40px;
-      padding-left: 40px;
-      font-size: 20px;
-  }
-
 
 
   .search-bar i {
@@ -285,7 +258,16 @@ tr:nth-child(even) td{
   }
 }
 
-@media(max-width: 415px){
+@media(max-width: 500px){
+
+  .search-bar input {
+    width:100%;
+  }
+
+  .container {
+    margin-bottom: 20px;
+  }
+
 
   .search-bar i {
       z-index: 1;
@@ -298,7 +280,6 @@ tr:nth-child(even) td{
     .search-bar {
       margin-bottom: 10px;
     }
-
 
 
   .button-container .notify-btn{
@@ -319,6 +300,13 @@ tr:nth-child(even) td{
 }
 
 @media(max-width: 375px){
+
+
+  
+  .search-bar input {
+    width:100%;
+  }
+  
 
   .button-container{
       display: flex;
@@ -771,9 +759,31 @@ li {
       left: 50%;
       width: 400px;
   }
+
+  #additional-popup{
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 400px;
+  }
+
+  .cancelx-btn{
+    padding: 10px 20px 10px 20px;
+  }
+
+  ul {
+  
+  padding-left: 70px;
+}
+
+li {
+  margin-bottom: 5px;
+
+}
+
   
   #popup.active{
-      top: 35%;
+      top: 45%;
   }
 
   .modal-body{
@@ -883,6 +893,33 @@ li {
 }
 
 @media (max-width: 430px){
+
+  #additional-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+  }
+
+  ul {
+  
+    padding-left: 40px;
+  }
+
+  #additional-popup .modal-body h1{
+    padding-left: 30px;
+  }
+
+  .ok-btn{
+    padding: 10px 20px 10px 20px;
+    font-size: 12px;
+  }
+  
+  .cancelx-btn{
+    padding: 10px 20px 10px 20px;
+    font-size: 12px;
+  }
+  
   .claimed-message{
       padding: 10px 2px;
       justify-content: left;
@@ -922,6 +959,30 @@ li {
 }
 
 @media (max-width: 350px){
+
+  #popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+  }
+
+  #additional-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+  }
+
+  ul {
+    font-size: 10px;
+    padding-left: 35px;
+  }
+
+  #additional-popup .modal-body h1{
+    padding-left: 25px;
+    font-size: 12px;
+  }
 
   .claim-detail-container{
       max-width: 90vw;
