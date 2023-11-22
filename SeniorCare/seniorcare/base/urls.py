@@ -1,9 +1,16 @@
 from django.urls import path
+from django.contrib import admin
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+#changing admin header
+admin.site.site_header = 'SeniorCare Administration'
+#changing admin title
+admin.site.index_title = 'User Information Management'
+
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('register_page/', views.register_page, name='register_page'),
     path('main_page/', views.main_page, name='main_page'), 
