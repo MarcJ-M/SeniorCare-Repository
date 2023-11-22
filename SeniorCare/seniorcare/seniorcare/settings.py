@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +24,12 @@ TWILIO_PHONE_NUMBER = '+15673471882'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = []
+SECRET_KEY = 'django-insecure-6#h1(y^pg5+v&5e^n(b5!%e1dr$ss(haab&j8e07qn24$5=796'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -83,21 +82,18 @@ WSGI_APPLICATION = 'seniorcare.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#DATABASES = {
-    #'default': {
-      #  'ENGINE': 'django.db.backends.postgresql',
-     #   'NAME': 'railway',
-    #    'USER': 'postgres',
-   #     'PASSWORD': 'C6F6FDGECA3B-C-bF562646e*e5F33d2',
-  #      'HOST': 'monorail.proxy.rlwy.net',
- #       'PORT': '12133',
-#
- #   }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'webhost',
+        'USER': 'postgres',
+        'PASSWORD': 'C6F6FDGECA3B-C-bF562646e*e5F33d2',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '12133',
 
-DATABASES={
-  "default": dj_database_url.parse("postgres://webhost_user:7ZlDFnOSjjkL2wK5wiJe6YVam3JPmJSP@dpg-cleongt3qkas73avfdq0-a.oregon-postgres.render.com/webhost")
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -134,7 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS =[
+    BASE_DIR / 'static'
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
