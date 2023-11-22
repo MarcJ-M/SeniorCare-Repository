@@ -41,7 +41,7 @@
       <tbody>
         {%for senior in seniors%}
         <tr>
-          <td>{{ senior.id }}</td>
+          <td>{{ forloop.counter }}</td>
           <td>{{ senior.last_name }}</td>
           <td>{{ senior.first_name }}</td>
           <td>{{ senior.middle_name }}</td>
