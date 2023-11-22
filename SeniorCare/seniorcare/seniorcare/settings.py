@@ -84,15 +84,18 @@ WSGI_APPLICATION = 'seniorcare.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'webhost',
-        'USER': 'postgres',
-        'PASSWORD': 'C6F6FDGECA3B-C-bF562646e*e5F33d2',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '12133',
-
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'test_code2',
+        'USER': 'ROOT',
+        'PASSWORD': '',
+        'HOST': 'localhost',  
+        'PORT': '3306',     
+        'OPTIONS':{
+          'init_command': "SET sql_mode= 'STRICT_TRANS_TABLES"
+        }
     }
 }
+
 
 
 # Password validation
