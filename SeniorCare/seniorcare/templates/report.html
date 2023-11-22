@@ -1,10 +1,15 @@
 {% block content %}
   {% load static %}
-
+<head>
   <style>
+    @page {
+      size: A4;
+      margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+    }
+
     body {
-      margin: 0; /* Add margin for better spacing */
-      font-family: Arial, sans-serif; /* Change the font if needed */
+      margin: 0;
+      font-family: Arial, sans-serif;
     }
 
     table {
@@ -14,7 +19,7 @@
     }
 
     th, td {
-      padding: 12px; /* Increase padding for better spacing */
+      padding: 12px;
       text-align: left;
     }
 
@@ -23,7 +28,7 @@
     }
 
     hr {
-      border: 1px solid #ddd; /* Add a border above and below the table */
+      border: 1px solid #ddd;
       margin-top: 20px;
       margin-bottom: 20px;
     }
@@ -37,51 +42,68 @@
     }
 
     .logo img {
-      max-width: 200px; /* Adjust the maximum width of the logo */
-      max-height: 100px; /* Adjust the maximum height of the logo */
+      max-width: 200px;
+      max-height: 100px;
+    }
+
+    .header, .footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    footer {
+      margin-bottom: 0px;
     }
   </style>
+</head>
+<body>
 
-  <hr>
-
-  <h1>Senior List Summary Report</h1>
-
-  <div class="logo">
-    <img src="{% static 'image/senior_care_logo.png' %}" alt="senior care logo">
+  <div class="header">
+    <!-- Your header content goes here -->
+    <h1>Senior List Summary Report</h1>
+    <div class="logo">
+      <img src="{% static 'image/senior_care_logo.png' %}" alt="senior care logo">
+    </div>
   </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>OSCA_ID</th>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Middle Initial</th>
-        <th>Suffix</th>   
-        <th>Status</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for senior in seniors %}
-      <tr>
-        <td>{{ senior.OSCA_ID }}</td>
-        <td>{{ senior.last_name }}</td>
-        <td>{{ senior.first_name }}</td>
-        <td>{{ senior.middle_name }}</td>
-        <td>{{ senior.suffix }}</td>
-        <td>
-          {% if senior.is_claimed %}
-            Claimed
-          {% else %}
-            Unclaimed
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>  
-
   <hr>
+  <div class="content">
+    <table>
+      <thead>
+        <tr>
+          <th>OSCA_ID</th>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Middle Initial</th>
+          <th>Suffix</th>   
+          <th>Status</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        {% for senior in seniors %}
+        <tr>
+          <td>{{ senior.OSCA_ID }}</td>
+          <td>{{ senior.last_name }}</td>
+          <td>{{ senior.first_name }}</td>
+          <td>{{ senior.middle_name }}</td>
+          <td>{{ senior.suffix }}</td>
+          <td>
+            {% if senior.is_claimed %}
+              Claimed
+            {% else %}
+              Unclaimed
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>  
+  </div>
+  <footer>
+    <hr>
+  </footer>
+</body>
 {% endblock %}
