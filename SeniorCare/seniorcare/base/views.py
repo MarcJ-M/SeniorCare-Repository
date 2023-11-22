@@ -38,26 +38,6 @@ from reportlab.lib.pagesizes import letter
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-#File Output (PDF)
-def report_summary(request):
-    template_path = 'report.html'
-    context = {'myvar': 'this is your template context'}
-    # Create a Django response object, and specify content_type as pdf
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="report.pdf"'
-    # find the template and render it.
-    template = get_template(template_path)
-    html = template.render(context)
-
-    # create a pdf
-    pisa_status = pisa.CreatePDF(
-       html, dest=response)
-    # if error then show some funny view
-    if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
-
-
 # Create your views here.
 
 def index(request):
@@ -107,7 +87,7 @@ def register_page(request):
     return render(request, 'register_page.html', context)
 
 def update_page(request):
-    seniors = senior_list.objects.all()
+    seniors = senior_list.objects.all().order_by('last_name')
     return render(request, 'update_page.html', {'seniors': seniors})
 
 def update_viewinfo_page(request, id):
@@ -175,7 +155,7 @@ def search1(request):
     return render(request, 'claim_page.html', context)
 
 def claim_page(request):
-    seniors = senior_list.objects.all()
+    seniors = senior_list.objects.all().order_by('last_name')
     return render(request, 'claim_page.html', {'seniors': seniors})
 
 def claim_detail_page(request, id):
@@ -226,14 +206,17 @@ def claim_summary_page(request):
 
 
 def download_summary(request):
+    seniors = senior_list.objects.all().order_by('last_name')
+
+
+    content={'seniors':seniors}
     template_path = 'report.html'
-    context = {'myvar': 'this is your template context'}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="report.pdf"'
     # find the template and render it.
     template = get_template(template_path)
-    html = template.render(context)
+    html = template.render(content)
 
     # create a pdf
     pisa_status = pisa.CreatePDF(

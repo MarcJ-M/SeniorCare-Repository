@@ -35,7 +35,6 @@ urlpatterns = [
     path('capture_image/', views.capture_image, name='capture_image'),
 
     path('download_summary/', views.download_summary, name='download_summary'),
-    path('report_summary/', views.report_summary, name='report_summary'),
 
     
     path('camera_page/<int:id>/', views.camera_page, name='camera_page'),
