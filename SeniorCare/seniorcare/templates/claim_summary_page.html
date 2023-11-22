@@ -50,7 +50,7 @@
                     <p>Are you sure you want to download the summary now?  <br> This will reset all claimed list.</p>
                     </div>
                     <div class="modal-buttons">
-                        <button id="confirm-button" class="btnContinue">Continue</button>
+                        <a href="#" onclick="showPrintSummaryConfirmation()" > <button id="confirm-button" class="btnContinue">Continue</button></a>
                         <button id="cancel-button" class="btnCancel">Cancel</button>
                     </div>
                 </div>
@@ -63,16 +63,32 @@
             
                     var confirmButton = document.getElementById('confirm-button');
                     confirmButton.addEventListener('click', function() {
-                        window.location.href = "{% url 'download_summary' %}";
+                        downloadSummaryInNewTab();
                         modal.style.display = 'none';
                     });
             
                     var cancelButton = document.getElementById('cancel-button');
                     cancelButton.addEventListener('click', function() {
-                    modal.style.display = 'none';
+                        modal.style.display = 'none';
                     });
+            
+                    function downloadSummaryInNewTab() {
+                        var link = document.createElement('a');
+                        link.href = "{% url 'download_summary' %}";
+                        link.target = "_blank";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+            
+                        // Redirect to the claim page after a short delay
+                        setTimeout(function() {
+                            window.location.href = "{% url 'claim_page' %}";
+                        }, 1000); // 1000 milliseconds = 1 second, adjust as needed
+                    }
                 }
             </script>
+            
+            
 {% endblock content%}
 
 
