@@ -1,15 +1,13 @@
-
-
-a{
+a {
   text-decoration: none;
 }
 
-img{
+img {
   width: 100%;
   border-radius: 10px;
 }
 
-:focus{
+:focus {
   outline: none;
 }
 
@@ -20,58 +18,54 @@ img{
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 
-.inner{
+.inner {
   padding: 20px;
   max-width: 1000px;
   top: min(10rem, -5rem);
   display: flex;
 }
 
-.inner.photo-holder{
+.inner.photo-holder {
   width: 30%;
 }
 
-
-.inner form{
+.inner form {
   width: 70%;
   margin-right: 30px;
 }
 
-.form-wrapper{
+.form-wrapper {
   width: 100%;
   height: 40px;
 
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
-.form-wrapper input{
+.form-wrapper input {
   font-size: 20px;
   padding: 25px 10px;
   width: 100%;
   outline: none;
 }
 
-.form-group{
+.form-group {
   display: flex;
 }
 
-.form-group input{
+.form-group input {
   width: 50%;
   padding: 25px 10px;
   outline: none;
-
 }
 
-.form-group input:first-child{
+.form-group input:first-child {
   margin-right: 10px;
   width: 57%;
 }
 
-
-.form-select{
+.form-select {
   padding: 6px, 9px;
   border: 1px solid black;
   border-radius: 5px;
@@ -80,26 +74,25 @@ img{
   width: 40%;
 }
 
-
-.form-group1{
+.form-group1 {
   display: flex;
 }
 
-.form-group1 input{
+.form-group1 input {
   width: 50%;
   padding: 25px 10px;
 }
 
-.form-group1 input:first-child{
+.form-group1 input:first-child {
   margin-right: 10px;
   width: 180%;
 }
 
-.form-wrapper{
+.form-wrapper {
   position: relative;
 }
 
-.form-control{
+.form-control {
   border: 1px solid black;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -111,63 +104,107 @@ img{
   font-size: 20px;
 }
 
-.form-group select{
+.form-group select {
   cursor: pointer;
   color: gray;
 }
 
-.form-group select option{
+.form-group select option {
   font-size: 15px;
 }
 
-.form-group select option[value=""][disabled]{
+.form-group select option[value=""][disabled] {
   display: none;
 }
 
-
-.btn-container{
+.btn-container {
   display: flex;
   justify-content: space-evenly;
 }
 
-.btn-edit{
+.btn-edit {
   padding: 12px 40px 12px 40px;
-  background-color: #A0BFE0;
+  background-color: #a0bfe0;
   border-radius: 5px;
   color: black;
   font-weight: bolder;
   font-size: 15px;
-  transition: .2s;
+  transition: 0.2s;
 }
-.btn-delete{
+
+.confirm-delete {
+  text-align: center;
+}
+
+.btn-delete1,
+.btn-cancel1 {
   padding: 12px 40px 12px 40px;
-  background-color: #A0BFE0;
+  background-color: #a0bfe0;
   border-radius: 5px;
   color: black;
   font-weight: bolder;
   font-size: 15px;
-  transition: .2s;
+  transition: 0.2s;
+  cursor: pointer;
+  width: 50px;
+  height: 30px;
+  line-height: 10px;
 }
 
-.btn-cancel{
+.btn-delete {
   padding: 12px 40px 12px 40px;
-  background-color: #A0BFE0;
+  background-color: #a0bfe0;
   border-radius: 5px;
   color: black;
   font-weight: bolder;
   font-size: 15px;
-  transition: .2s;
+  transition: 0.2s;
+  border: none;
 }
 
-.btn-container a:hover{
-  background: #4A55A2;
+.btn-cancel {
+  padding: 12px 40px 12px 40px;
+  background-color: #a0bfe0;
+  border-radius: 5px;
+  color: black;
+  font-weight: bolder;
+  font-size: 15px;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
-.form-control:hover, .form-select:hover{
+.btn-delete:hover,
+.btn-cancel:hover {
+  background-color: #4a55a2;
+}
+
+.btn-delete1:hover,
+.btn-cancel1:hover {
+  background-color: #4a55a2;
+}
+
+.btn-container a:hover {
+  background: #4a55a2;
+}
+
+.form-control:hover,
+.form-select:hover {
   background: #d6dfe9;
 }
 
-.image input{
+@media only screen and (min-width: 150px) and (max-width: 640px) {
+  .btn-delete1,
+  .btn-cancel1 {
+    width: 75%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10pt;
+    font-size: 12px;
+  }
+}
+
+.image input {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 40px;
@@ -180,11 +217,11 @@ img{
   cursor: pointer;
 }
 
-.photo-holder{
+.photo-holder {
   text-align: center;
 }
 
-.camera-btn{
+.camera-btn {
   position: relative;
   top: 20px;
   width: 30%;
@@ -192,132 +229,156 @@ img{
   border-radius: 5px;
   padding: 15px 15px;
   font-weight: bold;
-  background: #A0BFE0;
-  transition: .2s;
+  background: #a0bfe0;
+  transition: 0.2s;
   color: black;
 }
 
-.camera-btn:hover{
-  background: #A0BFE0;
-
+.camera-btn:hover {
+  background: #a0bfe0;
 }
 
-
-
-@media(max-width: 840px){
-
-  
-  .inner .photo-holder{
-      width: 30%;
+@media (max-width: 840px) {
+  .inner .photo-holder {
+    width: 30%;
   }
 
-    .inner form{
-      width: 60%;
+  .inner form {
+    width: 60%;
   }
 }
 
-
-@media(max-width: 550px){
- 
-  .inner .photo-holder{
-      width: 50%;
-      position: absolute;
-      top: calc(20% - 5%);
-      right: 25%;
+@media (max-width: 550px) {
+  .inner .photo-holder {
+    width: 50%;
+    position: absolute;
+    top: calc(20% - 5%);
+    right: 25%;
   }
 
-  .inner form{
-      width: 90%;
-      margin-top: 60%;
-      margin-left: 30px;
+  .inner form {
+    width: 90%;
+    margin-top: 60%;
+    margin-left: 30px;
   }
 
-  .form-control{
-      width: 95%;
+  .form-control {
+    width: 95%;
   }
 
-  .inner button{
-      width: 60%;
-      margin-left: calc(30% - 3.5rem);
+  .inner button {
+    width: 60%;
+    margin-left: calc(30% - 3.5rem);
   }
 }
 
-
-@media(max-width: 385px){
-
-
-  .inner .photo-holder{
-      top: min(25%, 16%);
-  }
-  
-  .inner form{
-
-      margin-top: 50%;
+@media (max-width: 385px) {
+  .inner .photo-holder {
+    top: min(25%, 16%);
   }
 
-  .form-control{
-      width: 93%;
-      height: 30px;
-      font-size: 15px;
+  .inner form {
+    margin-top: 50%;
+  }
+
+  .form-control {
+    width: 93%;
+    height: 30px;
+    font-size: 15px;
   }
 
   .form-wrapper {
     margin-bottom: 8px;
   }
 
-  .form-group{
+  .form-group {
     margin-bottom: 0;
     height: 50px;
-
   }
 
-  .form-group1{
+  .form-group1 {
     margin-bottom: 0;
-    height: 50px
-
+    height: 50px;
   }
 
-  .form-wrapper input{
+  .form-wrapper input {
     font-size: 15px;
     padding: 20px 10px;
     width: 100%;
   }
 
-  .form-group input{
+  .form-group input {
     font-size: 15px;
     padding: 20px 10px;
     width: 100%;
   }
 
-  .form-group1 input{
+  .form-group1 input {
     font-size: 15px;
     padding: 20px 10px;
     width: 100%;
   }
 
-  .form-select{
-      height: 45px;
-      font-size: 15px;
+  .form-select {
+    height: 45px;
+    font-size: 15px;
   }
 
-  .inner button{
-      margin-top: 5px;
-      width: 40%;
-      margin-left: calc(50% - 3.5rem);
+  .inner button {
+    margin-top: 5px;
+    width: 40%;
+    margin-left: calc(50% - 3.5rem);
   }
 }
 
-@media (max-width: 500px) and (min-height: 740px){
-  .inner form{
+@media (max-width: 500px) and (min-height: 740px) {
+  .inner form {
     margin-top: 60%;
-}
-
-}
-
-@media (max-width: 930px){
-
-  .container{
-      max-width: 90vw;
   }
 }
 
+@media (max-width: 930px) {
+  .container {
+    max-width: 90vw;
+  }
+}
+
+.confirmation-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 40%;
+  border-radius: 10px;
+}
+
+.confirmation-popup .header {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  background: #4a55a2;
+  padding: 20px;
+}
+
+.confirmation-popup .popup-body {
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.confirmation-popup .popup-body p {
+  font-size: 20px;
+}
+
+.confirmation-popup button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #a0bfe0;
+}
+
+.confirmation-popup button:hover {
+  background-color: #4a55a2;
+}
