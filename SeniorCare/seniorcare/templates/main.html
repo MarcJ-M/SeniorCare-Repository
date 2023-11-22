@@ -22,13 +22,13 @@
         <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"></button>
             <nav>
             <ul class="primary-navigation" id="primary-navigation" data-visible="false">
-                <li><a href="{% url 'update_page' %}"> <span aria-hidden="true"> Update </span></a>
+                <li><a class="pages" href="{% url 'update_page' %}"> <span aria-hidden="true"> Update </span></a>
                 </li>
-                <li><a href="{% url 'register_page' %}"> <span aria-hidden="true"> Register </span></a>
+                <li><a class="pages" href="{% url 'register_page' %}"> <span aria-hidden="true"> Register </span></a>
                 </li>
-                <li><a href="{% url 'sms' %}"> <span aria-hidden="true"> SMS </span></a>
+                <li><a class="pages" href="{% url 'sms' %}"> <span aria-hidden="true"> SMS </span></a>
                 </li>
-                <li><a href="{% url 'claim_page' %}"> <span aria-hidden="true"> Claim </span></a>
+                <li><a class="pages" href="{% url 'claim_page' %}"> <span aria-hidden="true"> Claim </span></a>
                 </li>                           
                 <li><a href="#" class="nav-link"><span aria-hidden="true"> Profile </span></a></li>
                 <li><a href="{% url 'index' %}" class="nav-link"><span aria-hidden="true"> Log Out </span></a></li>
