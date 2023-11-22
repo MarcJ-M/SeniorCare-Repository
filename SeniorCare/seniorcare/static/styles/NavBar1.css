@@ -286,7 +286,7 @@ nav a:hover::before {
   }
 
   .logo img {
-    width: 150em;
+    width: 150px;
     left: 20px;
     top: 30px;
   }

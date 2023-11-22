@@ -771,9 +771,31 @@ li {
       left: 50%;
       width: 400px;
   }
+
+  #additional-popup{
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    width: 400px;
+  }
+
+  .cancelx-btn{
+    padding: 10px 20px 10px 20px;
+  }
+
+  ul {
+  
+  padding-left: 70px;
+}
+
+li {
+  margin-bottom: 5px;
+
+}
+
   
   #popup.active{
-      top: 35%;
+      top: 45%;
   }
 
   .modal-body{
@@ -883,6 +905,33 @@ li {
 }
 
 @media (max-width: 430px){
+
+  #additional-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+  }
+
+  ul {
+  
+    padding-left: 40px;
+  }
+
+  #additional-popup .modal-body h1{
+    padding-left: 30px;
+  }
+
+  .ok-btn{
+    padding: 10px 20px 10px 20px;
+    font-size: 12px;
+  }
+  
+  .cancelx-btn{
+    padding: 10px 20px 10px 20px;
+    font-size: 12px;
+  }
+  
   .claimed-message{
       padding: 10px 2px;
       justify-content: left;
@@ -922,6 +971,30 @@ li {
 }
 
 @media (max-width: 350px){
+
+  #popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+  }
+
+  #additional-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+  }
+
+  ul {
+    font-size: 10px;
+    padding-left: 35px;
+  }
+
+  #additional-popup .modal-body h1{
+    padding-left: 25px;
+    font-size: 12px;
+  }
 
   .claim-detail-container{
       max-width: 90vw;
