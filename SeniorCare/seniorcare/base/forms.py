@@ -15,7 +15,7 @@ class register_form(ModelForm):
             'sex': forms.TextInput(attrs={'placeholder': 'Sex', 'required': True, 'class': 'form-control form-select'}),
             'birth_date': forms.DateInput(attrs={'required': True, 'class': 'form-control', 'type':'date'}),
             'address': forms.TextInput(attrs={'placeholder': 'Address', 'required': True, 'class': 'form-control'}),
-            'OSCA_ID': forms.NumberInput(attrs={'placeholder': 'OSCA_ID', 'required': True, 'class': 'form-control'}),
+            'OSCA_ID': forms.NumberInput(attrs={'placeholder': 'OSCA_ID', 'required': True, 'id': 'id_osca_id', 'class': 'form-control'}),
             'senior_image': forms.FileInput(attrs={'required': False, 'id': 'image', 'class':'form-control'}), 
             'phone_number': forms.TextInput(attrs={'placeholder': 'Contact No.', 'required': True, 'class': 'form-control'}),
 

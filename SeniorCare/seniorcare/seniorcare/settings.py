@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-6#h1(y^pg5+v&5e^n(b5!%e1dr$ss(haab&j8e07qn24$5=796
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -86,15 +86,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'test_code2',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306',
-        'OPTIONS': {
-            'sql_mode': 'STRICT_ALL_TABLES',  # Enable Strict Mode
-        },
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  
+        'PORT': '3306',     
     }
 }
+
 
 
 # Password validation
@@ -135,6 +133,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS =[
     BASE_DIR / 'static'
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

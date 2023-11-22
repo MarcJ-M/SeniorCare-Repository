@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <div class="inner">
-      <form action="/update/{{seniors.id}}" method="POST">
+      <form action="/update/{{seniors.id}}"  enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         <div class="form-wrapper">
           <input
@@ -84,6 +84,17 @@
             value="{{ seniors.address}}"
           />
         </div>
+
+        <div class="form-wrapper">
+          <input
+            type="text"
+            class="form-control"
+            name="phone_number"
+            placeholder="OSCA_ID"
+            value="{{ seniors.phone_number }}"
+          />
+        </div>
+
         <div class="form-wrapper">
           <input
             type="text"
@@ -95,8 +106,17 @@
           />
         </div>
 
+        <div class="image">
+          <input
+            type="file"
+            class="form-control"
+            name="senior_image"
+          />
+        </div>
+
         <div class="form-btn">
           <button type="submit" class="btn-edit">Save</button>
+          <button class="cancel-btn">Cancel</button>
         </div>
 
       </form>
@@ -104,10 +124,12 @@
       {% if seniors.senior_image %}
             <div class="photo-holder">
                 <img src="{{ seniors.senior_image.url }}" alt="profile">
+                <a href="{% url 'camera' %}" target="_blank" class="camera-btn">Take Picture</a>
             </div>
         {% else %}
             <div class="photo-holder">
                 <img src="{% static 'image/profile.png' %}" alt="profile">
+                <a href="{% url 'camera' %}" target="_blank" class="camera-btn">Take Picture</a>
             </div>
         {% endif %}
     </div>

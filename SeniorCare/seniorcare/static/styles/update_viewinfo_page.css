@@ -124,30 +124,42 @@ img{
   display: none;
 }
 
-.inner button{
-  width: 30%;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 0;
-  font-weight: bold;
-  background: #A0BFE0;
-  transition: .2s;
-}
 
 .btn-container{
   display: flex;
-  align-items: center;
+  justify-content: space-evenly;
 }
 
 .btn-edit{
-  margin-left: 50px;
+  padding: 12px 40px 12px 40px;
+  background-color: #A0BFE0;
+  border-radius: 5px;
+  color: black;
+  font-weight: bolder;
+  font-size: 15px;
+  transition: .2s;
 }
 .btn-delete{
-  margin-left: 20px;
-  margin-right: 5%;
+  padding: 12px 40px 12px 40px;
+  background-color: #A0BFE0;
+  border-radius: 5px;
+  color: black;
+  font-weight: bolder;
+  font-size: 15px;
+  transition: .2s;
 }
 
-.inner button:hover{
+.btn-cancel{
+  padding: 12px 40px 12px 40px;
+  background-color: #A0BFE0;
+  border-radius: 5px;
+  color: black;
+  font-weight: bolder;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.btn-container a:hover{
   background: #4A55A2;
 }
 

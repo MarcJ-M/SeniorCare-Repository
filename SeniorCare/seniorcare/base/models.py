@@ -16,7 +16,7 @@ class senior_list(models.Model):
   created=models.DateTimeField(auto_now_add=True)
   is_claimed = models.BooleanField(default=False)
   claimed_date = models.DateTimeField(null=True, blank=True)
-  senior_image = models.ImageField(blank=True, null=True)
+  senior_image = models.ImageField(upload_to='media/', blank=True, null=True)
 
   def __str__(self):
         return f"{self.first_name} "

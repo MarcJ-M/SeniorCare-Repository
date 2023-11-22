@@ -90,34 +90,3 @@ function saveAndDownloadImage(dataURL, fileName) {
 
 
 
-function showConfirmation() {
-    var confirmationPopup = document.getElementById('confirmation-popup');
-    confirmationPopup.style.display = 'block';
-  }
-
-
-function submitForm() {
-    const form = document.getElementById('registrationForm');
-    if (form) {
-        if (form.checkValidity()) {
-            form.submit();
-        } else {
-            const warningMessage = document.getElementById('form-warning-message');
-            if (warningMessage) {
-                warningMessage.innerText = "Please fill out all the form needed!";
-                warningMessage.style.display = 'block';
-            } else {
-                console.error("Warning message element not found");
-            }
-            hideConfirmation();
-            console.error("Form is not valid");
-        }
-    } else {
-        console.error("Form not found");
-    }
-}
-
-function hideConfirmation() {
-    var confirmationPopup = document.getElementById('confirmation-popup');
-    confirmationPopup.style.display = 'none';
-}

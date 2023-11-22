@@ -36,7 +36,14 @@ urlpatterns = [
 
     path('download_summary/', views.download_summary, name='download_summary'),
     path('report_summary/', views.report_summary, name='report_summary'),
+
+    
+    path('camera_page/<int:id>/', views.camera_page, name='camera_page'),
+    path('facial_recognition/<int:id>/', views.facial_recognition, name='facial_recognition'),
+    path('match/<int:id>/', views.match, name='match'),
+    path('check_osca_id/', views.check_osca_id, name='check_osca_id'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
