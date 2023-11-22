@@ -25,6 +25,8 @@ import cv2
 import os
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
+import face_recognition
+import dlib
 
 
 from django.http import HttpResponseRedirect, FileResponse
@@ -33,43 +35,28 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 #File Output (PDF)
-def download_summary(request):
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize = letter, buttomup = 0)
-    textob = c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Arial", 12)
+def report_summary(request):
+    template_path = 'report.html'
+    context = {'myvar': 'this is your template context'}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
 
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
-    senior_ob = senior_list.Objects.all()
-
-    
-    lines = []
-
-    for senior_list in senior_ob:
-        lines.append(senior_list.first_name)
-        lines.append(senior_list.last_name)
-        lines.append(senior_list.middle_name)
-        lines.append(senior_list.suffix)
-        lines.append(senior_list.age)
-        lines.append(senior_list.address)
-        lines.append(senior_list.OSCA_ID)
-        lines.append(senior_list.updated)
-        lines.append(senior_list.is_claimed)
-        lines.append(senior_list.claimed_date)
-        lines.append("--------------------------")
-
-    for line in lines:
-        textob.textLine(line)
-
-    c.drawText(textob)
-    c.showPage()
-    c.save()
-    buf.seek(0)
-
-    return FileResponse(buf, as_attachment=True, filename='summary.pdf')
 
 # Create your views here.
 
@@ -241,47 +228,25 @@ def claim_summary_page(request):
 
 
 def download_summary(request):
-    current_datetime = timezone.now()
-    formatted_datetime = current_datetime.strftime('%Y-%m-%d')
-    filename = f"summary_{formatted_datetime}.csv"
+    template_path = 'report.html'
+    context = {'myvar': 'this is your template context'}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
 
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = f'attachment; filename="{filename}"'
-    writer = csv.writer(response)
-
-    writer.writerow(['Claimed Seniors'])
-    writer.writerow(['Last Name', 'First Name', 'Age', 'OSCA ID', 'Claimed Date', 'Status'])
-    claimed_seniors = senior_list.objects.filter(is_claimed=True).order_by('last_name')
-    for senior in claimed_seniors:
-        claimed_status = 'Claimed'
-        claimed_date = senior.claimed_date.strftime('%B %d, %Y')
-        writer.writerow([
-            senior.last_name,
-            senior.first_name,
-            senior.age,
-            senior.OSCA_ID,
-            claimed_date,
-            claimed_status
-        ])
-
-    writer.writerow([])
-    writer.writerow(['Unclaimed Seniors'])
-    writer.writerow(['Last Name', 'First Name', 'Age', 'OSCA ID', 'Claimed Date', 'Status'])
-    unclaimed_seniors = senior_list.objects.filter(is_claimed=False).order_by('last_name')
-    for senior in unclaimed_seniors:
-        claimed_status = 'Unclaimed'
-        claimed_date = senior.claimed_date.strftime('%B %d, %Y')
-        writer.writerow([
-            senior.last_name,
-            senior.first_name,
-            senior.age,
-            senior.OSCA_ID,
-            claimed_date,
-            claimed_status
-        ])
-
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
     senior_list.objects.update(is_claimed=False)
     return response
+
+    
 
 def sms(request):
     messages = SMSMessage.objects.all()
@@ -368,4 +333,62 @@ def capture_image(request):
     return JsonResponse({'error': 'Invalid request method.'}, status=400)
 
 
+
+@csrf_exempt
+def facial_recognition(request, id):
+    seniors = senior_list.objects.get(id=id)
+
+    if request.method == 'POST':
+        captured_image_data_url = request.POST.get('captured_image', '')
+        
+        _, captured_image_base64 = captured_image_data_url.split(',')
+        captured_image = np.frombuffer(base64.b64decode(captured_image_base64), np.uint8)
+
+        captured_image_np = cv2.imdecode(captured_image, -1)
+
+        if captured_image_np is None:
+            return JsonResponse({'error': 'Unable to load the image.'})
+
+        known_face_encoding = get_known_face_encoding(seniors.senior_image.path)
+
+        face_locations = face_recognition.face_locations(captured_image_np)
+        captured_face_encodings = face_recognition.face_encodings(captured_image_np, face_locations)
+
+        for captured_face_encoding in captured_face_encodings:
+            match = compare_faces(known_face_encoding, captured_face_encoding)
+
+            if match:
+                seniors.is_claimed = True
+                seniors.claimed_date = timezone.now()
+                seniors.save()
+
+                return JsonResponse({'match': True})
+    
+    return JsonResponse({'match': False})
+
+def get_known_face_encoding(image_path):
+
+    known_image = face_recognition.load_image_file(image_path)
+
+    known_face_encoding = face_recognition.face_encodings(known_image)
+
+    if known_face_encoding:
+        return known_face_encoding[0] 
+    else:
+        return None
+
+def compare_faces(known_encoding, captured_encoding):
+    threshold = 0.5
+    distance = face_recognition.face_distance([known_encoding], captured_encoding)
+
+    return distance <= threshold
+
+
+def camera_page(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'camera.html', {'seniors': seniors})
+
+def match(request, id):
+    seniors = senior_list.objects.get(id=id)
+    return render(request, 'match.html', {'seniors': seniors})
 

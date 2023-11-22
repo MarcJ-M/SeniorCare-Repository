@@ -3,7 +3,7 @@
   rel="stylesheet"
   type="text/css"
   media="screen"
-  href="{% static 'styles/update_viewinfo_page2.css' %}"
+  href="{% static 'styles/update_viewinfo_page.css' %}"
 />
 
 <body>
@@ -99,6 +99,17 @@
           <input
             type="text"
             class="form-control"
+            name="Contact No."
+            placeholder="Address"
+            value="{{ seniors.phone_number}}"
+            disabled
+          />
+        </div>
+
+        <div class="form-wrapper">
+          <input
+            type="text"
+            class="form-control"
             name="OSCA_ID"
             placeholder="OSCA_ID"
             value="{{ seniors.OSCA_ID  }}"
@@ -116,9 +127,7 @@
               </button>
       </div>
         </form>
-
-
-
+        
         {% if seniors.senior_image %}
         <div class="photo-holder">
             <img src="{{ seniors.senior_image.url }}" alt="profile">

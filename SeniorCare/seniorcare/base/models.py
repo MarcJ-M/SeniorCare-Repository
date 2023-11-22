@@ -10,6 +10,7 @@ class senior_list(models.Model):
   sex= models.CharField(max_length=10,null=True)
   birth_date= models.DateField(null=True)
   address= models.CharField(max_length=100, null=True)
+  phone_number= models.CharField(max_length=12, null=True)
   OSCA_ID= models.CharField(max_length=20, null=True)
   updated = models.DateTimeField(auto_now=True)
   created=models.DateTimeField(auto_now_add=True)

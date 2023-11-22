@@ -24,19 +24,20 @@ urlpatterns = [
      path('delete_individual_message/<int:message_id>/',views.delete_individual_message, name='delete_individual_message'),
 
     path('claim_page/', views.claim_page, name='claim_page'),  
-    path('claim_detail_page/<int:id>', views.claim_detail_page, name='claim_detail_page'),
+    path('claim_detail_page/<int:id>/', views.claim_detail_page, name='claim_detail_page'),
     path('claimed_succesfully/<int:id>', views.claimed_succesfully, name='claimed_succesfully'),
     path('claimed_success/<int:id>', views.claimed_success, name='claimed_success'),
     path('claim_verify_page/', views.claim_verify_page, name='claim_verify_page'),
     path('claim_summary_page/', views.claim_summary_page, name='claim_summary_page'),
-    path('download_summary/', views.download_summary, name='download_summary'),
 
-     path('camera/', views.camera, name='camera'),
+    path('camera/', views.camera, name='camera'),
     path('preview/<int:id>', views.preview, name='preview'),
     path('capture_image/', views.capture_image, name='capture_image'),
 
     path('download_summary/', views.download_summary, name='download_summary'),
+    path('report_summary/', views.report_summary, name='report_summary'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

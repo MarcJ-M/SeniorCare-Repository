@@ -10,13 +10,15 @@ class register_form(ModelForm):
             'first_name': forms.TextInput(attrs={'placeholder': 'First Name', 'required': True, 'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Last Name', 'required': True, 'class': 'form-control'}),
             'middle_name': forms.TextInput(attrs={'placeholder': 'Middle Name', 'required': True, 'class': 'form-control'}),
-            'suffix': forms.TextInput(attrs={'placeholder': 'Suffix', 'required': False, 'class': 'form-control'}),
+            'suffix': forms.TextInput(attrs={'placeholder': 'Suffix', 'class': 'form-control'}),
             'age': forms.NumberInput(attrs={'placeholder': 'Age', 'required': True, 'class': 'form-control'}),
             'sex': forms.TextInput(attrs={'placeholder': 'Sex', 'required': True, 'class': 'form-control form-select'}),
-            'birth_date': forms.DateInput(attrs={'placeholder': 'another 1', 'required': True, 'class': 'form-control', 'type': 'date'}),
+            'birth_date': forms.DateInput(attrs={'required': True, 'class': 'form-control', 'type':'date'}),
             'address': forms.TextInput(attrs={'placeholder': 'Address', 'required': True, 'class': 'form-control'}),
             'OSCA_ID': forms.NumberInput(attrs={'placeholder': 'OSCA_ID', 'required': True, 'class': 'form-control'}),
             'senior_image': forms.FileInput(attrs={'required': False, 'id': 'image', 'class':'form-control'}), 
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Contact No.', 'required': True, 'class': 'form-control'}),
+
         }
 
     def clean_OSCA_ID(self):
