@@ -11,7 +11,7 @@
 
     <div class="inner">
 
-      <form action="" method="POST">
+      <form method="POST" >
         {% csrf_token %}
 
         <div class="form-wrapper">
@@ -118,13 +118,11 @@
         </div>
 
         <div class="btn-container">
-              <button type="submit" class="btn-edit" style="text-decoration: none;">
-                <a href="/edit/{{seniors.id}}">Edit</a>
-              </button>
-          
-              <button type="submit"  class="btn-delete" style="text-decoration: none;">
-                <a href="/delete/{{seniors.id}}">Delete</a>
-              </button>
+          <a href="/edit/{{seniors.id}}" class="btn-edit">Edit</a>
+
+          <a href="/delete/{{seniors.id}}" class="btn-delete">Delete</a>
+
+          <a href="/update_page/" class="btn-cancel">Back</a>
       </div>
         </form>
         

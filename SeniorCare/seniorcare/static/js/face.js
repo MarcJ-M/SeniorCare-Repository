@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const popup = document.getElementById('confirmation-popup');
     const popupYesButton = document.getElementById('popup-yes-button');
     const popupCancelButton = document.getElementById('popup-cancel-button');
+    const cancelButton = document.getElementById('cancel-btn');
     let capturedImage;  
     const seniorId = document.body.dataset.seniorId;
 
@@ -28,6 +29,10 @@ document.addEventListener('DOMContentLoaded', function () {
         submitLink.style.display = 'block';
 
         captureButton.style.display = 'none';
+    });
+
+    cancelButton.addEventListener('click', function () {
+        window.location.href = `/claim_detail_page/${seniorId}/`;
     });
 
     retakeButton.addEventListener('click', function () {

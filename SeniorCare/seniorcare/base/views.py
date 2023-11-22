@@ -121,31 +121,29 @@ def edit(request, id):
 
 
 
-#pahirap to pero working na siya ngayon
 def update(request, id):
-    firstname = request.POST['Firstname']
-    lastname = request.POST['Lastname']
-    middlename = request.POST['Middlename']
-    suffix = request.POST['Suffix']
-    sex = request.POST['sex']
-    #birthdate = request.POST['Birthdate']
-    age = request.POST['Age']
-    address = request.POST['Adress']
+
+    seniors = senior_list.objects.get(id=id)
     if request.method == 'POST':
-        seniors = senior_list.objects.get(id=id)
-        seniors.first_name = firstname
-        seniors.last_name = lastname
-        seniors.middle_name = middlename
-        seniors.suffix = suffix
-        seniors.sex = sex
-    #seniors.birth_date = birthdate cinomment ko to kasi di tinatanggap ng model ung format ng date na nakadisplay sa viewinfo page kaya dinisable ko para di mag-error
-        seniors.age = age
-        seniors.address = address
+        form = register_form(request.POST, request.FILES, instance=seniors)
+        if form.is_valid():
+            if 'senior_image' in request.FILES:
+                if seniors.senior_image:
+                    os.remove(seniors.senior_image.url)
+                seniors.senior_image = request.FILES['senior_image']
+        seniors.last_name = request.POST.get('Lastname')
+        seniors.first_name = request.POST.get('Firstname')
+        seniors.middle_name = request.POST.get('Middlename')
+        seniors.suffix = request.POST.get('Suffix')
+        seniors.age = request.POST.get('Age')
+        seniors.sex = request.POST.get('sex')
+        seniors.address = request.POST.get('Adress')
+        seniors.phone_number = request.POST.get('phone_number')
         seniors.save()
-        return redirect(update_page)
-    seniors = senior_list.objects.all()
-    return redirect('update_viewinfo_page', seniors.id,  {'seniors': seniors})
+    context = {'seniors': seniors}
+    return render ( request, 'update_viewinfo_page.html', context)
     
+
 
 #oks na to delete function
 def delete(request, id):
@@ -392,3 +390,7 @@ def match(request, id):
     seniors = senior_list.objects.get(id=id)
     return render(request, 'match.html', {'seniors': seniors})
 
+def check_osca_id(request):
+    osca_id = request.GET.get('osca_id', '')
+    is_taken = senior_list.objects.filter(OSCA_ID=osca_id).exists()
+    return JsonResponse({'is_taken': is_taken})
