@@ -23,6 +23,8 @@
       "src": "/(.*)",
       "dest": "seniorcare/wsgi.py"
     }
-  ]
+  ],
+  
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  
 }
-
