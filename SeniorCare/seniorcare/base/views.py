@@ -87,7 +87,7 @@ def register_page(request):
     return render(request, 'register_page.html', context)
 
 def update_page(request):
-    seniors = senior_list.objects.all()
+    seniors = senior_list.objects.all().order_by('last_name')
     return render(request, 'update_page.html', {'seniors': seniors})
 
 def update_viewinfo_page(request, id):
@@ -155,7 +155,7 @@ def search1(request):
     return render(request, 'claim_page.html', context)
 
 def claim_page(request):
-    seniors = senior_list.objects.all()
+    seniors = senior_list.objects.all().order_by('last_name')
     return render(request, 'claim_page.html', {'seniors': seniors})
 
 def claim_detail_page(request, id):
@@ -206,7 +206,7 @@ def claim_summary_page(request):
 
 
 def download_summary(request):
-    seniors = senior_list.objects.all()
+    seniors = senior_list.objects.all().order_by('last_name')
 
 
     content={'seniors':seniors}
