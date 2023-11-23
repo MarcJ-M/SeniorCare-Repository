@@ -1,1 +1,1 @@
-web: gunicorn seniorcare.wsgi
+web: gunicorn seniorcare.wsgi:application --log-file - --log-level debug
